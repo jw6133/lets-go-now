@@ -60,6 +60,9 @@ img{
     margin:0px auto;
     padding:100px 0px;
 }
+body{
+	width:360px;
+}
 `
 
 export default GlobalStyle
