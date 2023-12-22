@@ -18,9 +18,7 @@ function WeatherDisplay() {
     
           const response = await axios.get(Wurl, {
             params: {
-              serviceKey: process.env.REACT_APP_API_KEY,
-              numOfRows: 1,
-              pageNo: 10
+              authKey: process.env.REACT_APP_API_KEY,
             }
           });
     
