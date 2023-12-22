@@ -25,3 +25,40 @@ export async function googleLogin(){
         console.error(error);
     }
 }
+export async function googleLogOut(){
+    try{
+        await signOut(auth);
+    }catch(error){
+        console.error(error);
+    }
+}
+
+export function onUserState(callback){
+    onAuthStateChanged(auth,async(user)=>{
+        if(user){
+            try{
+                const updateUser = await adminUser(user);
+                callback(updateUser);
+            }catch(error){
+                console.error(error);
+            }
+        }else{
+            callback(null);
+        }
+    })
+}
+
+async function adminUser(user){
+    try{
+        const snapshot = await get(ref(database,'admin'));
+        if(snapshot.exists()){
+            const admins=snapshot.val();
+            const isAdmin=admins.includes(user.email);
+
+            return {...user.isAdmin};
+        }
+        return user;
+    }catch(error){
+        console.error(error);
+    }
+}

@@ -63,6 +63,11 @@ img{
 body{
 	width:360px;
 }
+.user-img{
+	width: 36px;
+	height:36px;
+    border-radius:100%;
+}
 `
 
 export default GlobalStyle
