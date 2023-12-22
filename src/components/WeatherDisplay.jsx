@@ -16,7 +16,7 @@ function WeatherDisplay() {
           setData(null);
           setLoading(true);
     
-          const response = await axios.get(URL, {
+          const response = await axios.get(Wurl, {
             params: {
               serviceKey: process.env.REACT_APP_API_KEY,
               numOfRows: 1,
@@ -25,6 +25,7 @@ function WeatherDisplay() {
           });
     
           setData(response.data);
+          
         } catch(e) {
           setError(e);
         }
@@ -39,7 +40,6 @@ function WeatherDisplay() {
       if(error)   return <div>Error...</div>;
       if(!data)   return null;
     
-      console.log(data);
     
     return (
         <div>
