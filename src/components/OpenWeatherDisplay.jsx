@@ -8,6 +8,7 @@ function OpenWeatherDisplay() {
     const [weatherData, setWeatherData] = useState([])
     const [lat,setLat]=useState(0)
     const [lon,setLon]=useState(0)
+    const [weatherMain,setWeatherMain]=useState([]);
 
     
     
@@ -23,27 +24,26 @@ function OpenWeatherDisplay() {
           let lon = position.coords.longitude;
           getWeather(lat, lon);
         });
-      }, []);
+      },[]);
 
 
     const getWeather=async(lat,lon)=>{
         try{
             const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${openWeatherApi}&units=metric`);
-            setWeatherData(result.data);
+            setWeatherData(result.data)
+            setWeatherMain(result.data.main)
         }catch(error){
                 console.error(error)
             }
     }
 
-    
-    const weathermain= weatherData.main;
-    console.log(weathermain)
+
     return (
 
         <SimpleWeather>
             {weatherData.name}
             <p></p>
-            <span>{weathermain.temp}°C</span>
+            <span>{weatherMain.temp}°C</span>
             
         
         </SimpleWeather>

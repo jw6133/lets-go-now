@@ -6,7 +6,7 @@ import UserData from './UserData';
 
 function Head() {
 
-    const [user,setUser] = useState();
+    const [user,setUser] = useState(null);
 
     useEffect(()=>{
         onUserState((user)=>{
@@ -17,8 +17,9 @@ function Head() {
     const gLogin=async()=>{
         const gUser=await googleLogin();
         setUser(gUser);
-        console.log(user);
+        
     }
+    console.log(user);
     return (
         <HeadContainer>
             <span> Lets Go NOW </span>
@@ -30,6 +31,7 @@ function Head() {
 }
 
 export default Head
+
 
 const HeadContainer = styled.div`
     width:360px;
