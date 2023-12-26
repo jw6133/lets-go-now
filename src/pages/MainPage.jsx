@@ -14,6 +14,7 @@ function MainPage() {
     const MainWrapper = styled.div`
     background-color:#D5EDBB;
     height:${mainHeight};
+    transition:2000ms;
     `
 
     
