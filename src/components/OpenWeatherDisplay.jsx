@@ -14,9 +14,8 @@ function OpenWeatherDisplay() {
     
 
     
+    const openWeatherApi="1e387d50f02e1624f01db6925218db94"
 
-    const openWeatherApi="1e387d50f02e1624f01db6925218db94";
-    const city="1835847";
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
