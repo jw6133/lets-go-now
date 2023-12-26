@@ -7,6 +7,7 @@ import UserData from './UserData';
 function Head() {
 
     const [user,setUser] = useState(null);
+    const [isLogin,setIsLogin]=useState(false);
 
     useEffect(()=>{
         onUserState((user)=>{
@@ -17,14 +18,13 @@ function Head() {
     const gLogin=async()=>{
         const gUser=await googleLogin();
         setUser(gUser);
-        
+        setIsLogin(true);
     }
-    console.log(user);
     return (
         <HeadContainer>
             <span> Lets Go NOW </span>
             <button onClick={gLogin}>구글 로그인</button>
-            <UserData user={user}/>
+            {user && isLogin && <UserData user={user}/>}
             <OpenWeatherDisplay/>
         </HeadContainer>
     )

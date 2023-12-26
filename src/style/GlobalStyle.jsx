@@ -68,6 +68,7 @@ body{
 	height:36px;
     border-radius:100%;
 }
+
 `
 
 export default GlobalStyle
