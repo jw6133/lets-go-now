@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Subway from '../components/Subway';
 
 
 function MainPage() {
@@ -14,13 +15,13 @@ function MainPage() {
     const MainWrapper = styled.div`
     background-color:#D5EDBB;
     height:${mainHeight};
-    transition:2000ms;
     `
 
     
     return (
         <MainWrapper>
             <button onClick={rollupGo}>rollup</button>
+            <Subway/>
             
         </MainWrapper>
     )
