@@ -1,7 +1,7 @@
 import React from 'react'
 import {Swiper,SwiperSlide} from 'swiper/react'; 
 import 'swiper/css'; 
-import {Autoplay, Navigation, Pagination} from 'swiper/modules';
+import {Autoplay} from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination'; 
@@ -11,6 +11,10 @@ const slider={
     width:"100px",
     height:"100px",
 }
+const items=[
+    {src:"../clothicon/four/glove.png"},
+    {src:"../clothicon/four/scarf.png"}
+]
 const ClothSlider=()=> {
     return (
         <>
@@ -22,13 +26,14 @@ const ClothSlider=()=> {
                 autoplay={{delay:1000}}
                 spped={1000}
     >
-      <SwiperSlide>
-        <img src='../clothicon/16_9/leather_jacket.png'/>
-      </SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-    </Swiper>
+      {items.map((item, idx) => {
+          return (
+            <SwiperSlide key={idx}>
+              <img src={item.src} />
+            </SwiperSlide>
+          );
+        })}
+            </Swiper>
         </>
     )
 }

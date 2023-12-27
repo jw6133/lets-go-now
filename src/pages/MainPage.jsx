@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Subway from '../components/Subway';
 import OpenWeatherHour from '../components/OpenWeatherHour';
 import ClothSlider from '../components/ClothSlider';
+import BusDisplay from '../components/BusDisplay';
 
 
 function MainPage() {
@@ -11,6 +12,8 @@ function MainPage() {
     const [user,setUser]=useState();
     const [weatherRollup,setWeatherRollup]=useState(false);
     const [clothRollup,setClothRollup]=useState(false);
+    const [subRollup,setSubRollup]=useState(false);
+    const [busRollup,setBusRollup]=useState(false);
 
     // const rollupGo=()=>{
     //     mainHeight==="20px" ? setMainHeight("500px") : setMainHeight("20px");
@@ -22,6 +25,12 @@ function MainPage() {
     const cRollup=()=>{
         setClothRollup(!clothRollup);
     }
+    const sRollup=()=>{
+        setSubRollup(!subRollup);
+    }
+    const bRollup=()=>{
+        setBusRollup(!busRollup);
+    }
 
     
 
@@ -30,14 +39,20 @@ function MainPage() {
         <MainWrapper>
             <WeatherWidget className={weatherRollup ? "opened" : null}>
                 <button className="rollupBtn" onClick={wRollup}>rollup</button>
-                {/* <OpenWeatherHour/> */}
-                {/* <Subway/> */}
-            
+                {/* {weatherRollup&&<OpenWeatherHour/>} */}
             </WeatherWidget>
             <ClothWidget className={clothRollup ? "opened" : null}>
                 <button className="rollupBtn" onClick={cRollup}>rollup</button>
                 {clothRollup&&<ClothSlider/>}
-            </ClothWidget>   
+            </ClothWidget>  
+            <SubwayWidget className={subRollup ? "opened" : null}>
+                <button className='rollupBtn' onClick={sRollup}>rollup</button>
+                {/* {subRollup&&<Subway/>} */}
+            </SubwayWidget> 
+            <BusWidget className={busRollup ? "opened" : null}>
+                <button className='rollupBtn' onClick={bRollup}>rollup</button>
+                {busRollup&&<BusDisplay/>}
+            </BusWidget>
         </MainWrapper>
     )
 }
@@ -61,6 +76,30 @@ const WeatherWidget = styled.div`
     `
 const ClothWidget = styled.div`
 background-color: lightblue;
+height:20px;
+display:block;
+transition:500ms;
+
+&.opened{
+    height:500px;
+}
+
+`
+
+const SubwayWidget = styled.div`
+background-color: gray;
+height:20px;
+display:block;
+transition:500ms;
+
+&.opened{
+    height:500px;
+}
+
+`
+
+const BusWidget = styled.div`
+background-color: lightgoldenrodyellow;
 height:20px;
 display:block;
 transition:500ms;
