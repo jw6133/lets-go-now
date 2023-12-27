@@ -20,3 +20,7 @@ code {
   animation-duration: 1s;
 	animation-name: rollup;
 }
+.rollupBtn{
+  background: transparent;
+  border:none;
+}

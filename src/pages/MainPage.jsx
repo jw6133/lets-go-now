@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Subway from '../components/Subway';
 import OpenWeatherHour from '../components/OpenWeatherHour';
+import ClothSlider from '../components/ClothSlider';
 
 
 function MainPage() {
@@ -35,7 +36,7 @@ function MainPage() {
             </WeatherWidget>
             <ClothWidget className={clothRollup ? "opened" : null}>
                 <button className="rollupBtn" onClick={cRollup}>rollup</button>
-                
+                {clothRollup&&<ClothSlider/>}
             </ClothWidget>   
         </MainWrapper>
     )
@@ -59,7 +60,7 @@ const WeatherWidget = styled.div`
     }
     `
 const ClothWidget = styled.div`
-background-color:#D5EDBB;
+background-color: lightblue;
 height:20px;
 display:block;
 transition:500ms;
@@ -67,4 +68,5 @@ transition:500ms;
 &.opened{
     height:500px;
 }
+
 `
