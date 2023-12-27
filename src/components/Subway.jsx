@@ -14,7 +14,7 @@ function Subway() {
 
     const getSubway =async()=>{
         try{
-            const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/1/${city}`);
+            const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/5/${city}`);
             setSubwayData(result.data);
             setIsLoad(true);
         }
@@ -23,11 +23,11 @@ function Subway() {
         }
     }
     console.log(subwayData)
-    // console.log(subwayData.data.realtimeArrivalList)
+
     return (
         <>
             {subwayData && subwayData.realtimeArrivalList && subwayData.realtimeArrivalList.map((el) => (
-                <div key={el.btrainNo}>{el.bstatnNm}</div>
+                <div key={el.btrainNo}>{el.barvlDt}</div>
             ))}
         </>
     )

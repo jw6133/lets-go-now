@@ -6,8 +6,6 @@ import styled from 'styled-components';
 function OpenWeatherDisplay() {
 
     const [weatherData, setWeatherData] = useState([])
-    const [lat,setLat]=useState(0)
-    const [lon,setLon]=useState(0)
     const [weatherMain,setWeatherMain]=useState([]);
 
     
@@ -36,13 +34,13 @@ function OpenWeatherDisplay() {
             }
     }
 
-
     return (
 
         <SimpleWeather>
             {weatherData.name}
             <p></p>
             <span>{weatherMain.temp}°C</span>
+            
             
         
         </SimpleWeather>
