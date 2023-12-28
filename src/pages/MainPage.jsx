@@ -36,20 +36,20 @@ function MainPage() {
 
     
     return (
-        <MainWrapper>
-            <WeatherWidget className={weatherRollup ? "opened" : null}>
+        <MainWrapper className='inner'>
+            <WeatherWidget id='1' className={weatherRollup ? "opened" : null}>
                 <button className="rollupBtn" onClick={wRollup}>rollup</button>
                 {/* {weatherRollup&&<OpenWeatherHour/>} */}
             </WeatherWidget>
-            <ClothWidget className={clothRollup ? "opened" : null}>
+            <ClothWidget id='2' className={clothRollup ? "opened" : null}>
                 <button className="rollupBtn" onClick={cRollup}>rollup</button>
                 {clothRollup&&<ClothSlider/>}
             </ClothWidget>  
-            <SubwayWidget className={subRollup ? "opened" : null}>
+            <SubwayWidget id='3' className={subRollup ? "opened" : null}>
                 <button className='rollupBtn' onClick={sRollup}>rollup</button>
                 {/* {subRollup&&<Subway/>} */}
             </SubwayWidget> 
-            <BusWidget className={busRollup ? "opened" : null}>
+            <BusWidget id='4' className={busRollup ? "opened" : null}>
                 <button className='rollupBtn' onClick={bRollup}>rollup</button>
                 {busRollup&&<BusDisplay/>}
             </BusWidget>
