@@ -23,7 +23,7 @@ const ClothSlider=()=> {
     const getCurrentWeather = (temp) => {
         setTemperature(temp);        
     }
-    console.log(temperature);
+    // console.log(temperature);
 
     const getImageFolder = (temperature)=>{
         if(temperature<=4){
@@ -59,7 +59,7 @@ const ClothSlider=()=> {
         }
     },[temperature])
 
-    console.log(folderName);
+    // console.log(folderName);
 
     const items=[
         {src:`../clothicon/${folderName}`}

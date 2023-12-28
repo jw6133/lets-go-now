@@ -33,7 +33,6 @@ function OpenWeatherDisplay(props) {
                 console.error(error)
             }
     }
-    console.log(weatherData)
 
     props.propFunction(weatherMain.temp);
     
