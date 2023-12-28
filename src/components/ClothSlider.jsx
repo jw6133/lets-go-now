@@ -34,20 +34,17 @@ const ClothSlider=()=> {
         }else if(temperature >= 9 && temperature <= 16){
             return '16_9'
         }
-        else if(temperature >= 5 && temperature <= 8){
-            return '16_9'
-        }
         else if(temperature >= 17 && temperature <= 19){
-            return '16_9'
+            return '19_17'
         }
         else if(temperature >= 20 && temperature <= 22){
-            return '16_9'
+            return '20_22'
         }
         else if(temperature >= 23 && temperature <= 27){
-            return '16_9'
+            return '27_23'
         }
         else if(temperature >= 28){
-            return '16_9'
+            return '28'
         }
         
     }
