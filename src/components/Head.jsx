@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { googleLogOut, googleLogin, onUserState } from '../api/firebase'
 import OpenWeatherDisplay from './OpenWeatherDisplay'
@@ -6,8 +6,12 @@ import UserData from './UserData';
 
 function Head() {
 
-    const [user,setUser] = useState(null);
-    const [isLogin,setIsLogin]=useState(false);
+    const [user, setUser] = useState(null);
+    const [isLogin, setIsLogin] = useState(false);
+    const dummyProps=()=>{
+        
+    }
+
 
     useEffect(()=>{
         onUserState((user)=>{
@@ -15,28 +19,40 @@ function Head() {
         })
     },[])
 
-    const gLogin=async()=>{
-        const gUser=await googleLogin();
-        setUser(gUser);
-        setIsLogin(true);
-    }
-    const gLogout=()=>{
-        googleLogOut().then(setUser(null));
-    }
+
+    const gLogin = async () => {
+        try {
+            const gUser = await googleLogin();
+            setUser(gUser);
+            setIsLogin(true);
+        } catch (error) {
+            console.error(error);
+            
+        }
+    };
+
+    const gLogout = () => {
+        googleLogOut()
+            .then(() => {
+                setUser(null);
+                setIsLogin(false);
+            })
+            .catch((error) => {
+                console.error( error);
+            });
+    };
     return (
         <HeadContainer>
             <span> Lets Go NOW </span>
-            {user?(
+            {user ? (
                 <>
-                {user&&isLogin&&<UserData user={user}/>}
-                <button onClick={gLogout}>로그아웃</button>
+                    {user && isLogin && <UserData user={user} />}
+                    <button onClick={gLogout}>로그아웃</button>
                 </>
-            ):(
+            ) : (
                 <button onClick={gLogin}>구글 로그인</button>
             )}
-            {/* <button onClick={gLogin}>구글 로그인</button>
-            {user && isLogin && <UserData user={user}/>} */}
-            <OpenWeatherDisplay/>
+            <OpenWeatherDisplay propFunction={dummyProps}/>
         </HeadContainer>
     )
 }

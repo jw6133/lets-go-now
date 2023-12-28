@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 
 
-function OpenWeatherDisplay() {
+function OpenWeatherDisplay(props) {
 
     const [weatherData, setWeatherData] = useState([])
     const [weatherMain,setWeatherMain]=useState([]);
 
     
-    
-
+        
     
     const openWeatherApi="1e387d50f02e1624f01db6925218db94"
+    
 
 
     useEffect(() => {
@@ -33,6 +33,10 @@ function OpenWeatherDisplay() {
                 console.error(error)
             }
     }
+    console.log(weatherData)
+
+    props.propFunction(weatherMain.temp);
+    
 
     return (
 
@@ -47,7 +51,9 @@ function OpenWeatherDisplay() {
     )
 }
 
-export default OpenWeatherDisplay
+export default OpenWeatherDisplay 
+
+
 const SimpleWeather=styled.div`
     position:relative;
     right:0%;

@@ -55,7 +55,7 @@ async function adminUser(user){
             const admins=snapshot.val();
             const isAdmin=admins.includes(user.email);
 
-            return {...user.isAdmin};
+            return {...user,isAdmin};
         }
         return user;
     }catch(error){

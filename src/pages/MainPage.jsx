@@ -39,7 +39,7 @@ function MainPage() {
         <MainWrapper className='inner'>
             <WeatherWidget id='1' className={weatherRollup ? "opened" : null}>
                 <button className="rollupBtn" onClick={wRollup}>rollup</button>
-                {/* {weatherRollup&&<OpenWeatherHour/>} */}
+                {weatherRollup&&<OpenWeatherHour/>}
             </WeatherWidget>
             <ClothWidget id='2' className={clothRollup ? "opened" : null}>
                 <button className="rollupBtn" onClick={cRollup}>rollup</button>

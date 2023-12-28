@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 function OpenWeatherHour() {
-    const [weatherHour,setWeatherHour]=useState([]);
+    const [weatherHour,setWeatherHour]=useState(null);
 
     const twoWeatherApi="c1a0442808f9041d9d60e0298d249705"
 
@@ -18,12 +18,13 @@ function OpenWeatherHour() {
     const getHourWeather=async(lat,lon)=>{
         try{
             const result = await axios.get(`api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${twoWeatherApi}`);
-            console.log(result)
+            setWeatherHour(result);
         }catch(error){
                 console.error(error)
             }
     }
 
+    console.log(weatherHour);
     return (
         <div>
             aa
