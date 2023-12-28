@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { googleLogin, onUserState } from '../api/firebase'
+import { googleLogOut, googleLogin, onUserState } from '../api/firebase'
 import OpenWeatherDisplay from './OpenWeatherDisplay'
 import UserData from './UserData';
 
@@ -20,11 +20,22 @@ function Head() {
         setUser(gUser);
         setIsLogin(true);
     }
+    const gLogout=()=>{
+        googleLogOut().then(setUser(null));
+    }
     return (
         <HeadContainer>
             <span> Lets Go NOW </span>
-            <button onClick={gLogin}>구글 로그인</button>
-            {user && isLogin && <UserData user={user}/>}
+            {user?(
+                <>
+                {user&&isLogin&&<UserData user={user}/>}
+                <button onClick={gLogout}>로그아웃</button>
+                </>
+            ):(
+                <button onClick={gLogin}>구글 로그인</button>
+            )}
+            {/* <button onClick={gLogin}>구글 로그인</button>
+            {user && isLogin && <UserData user={user}/>} */}
             <OpenWeatherDisplay/>
         </HeadContainer>
     )

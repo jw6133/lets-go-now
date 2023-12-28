@@ -12,8 +12,8 @@ const slider={
     height:"100px",
 }
 const items=[
-    {src:"https://swiperjs.com/demos/images/nature-5.jpg"},
-    {src:"https://swiperjs.com/demos/images/nature-6.jpg"}
+    {src:"../clothicon/four/glove.png"},
+    {src:"../clothicon/four/scarf.png"}
 ]
 const ClothSlider=()=> {
     return (

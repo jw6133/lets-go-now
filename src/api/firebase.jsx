@@ -32,7 +32,7 @@ export async function googleLogOut(){
         console.error(error);
     }
 }
-
+//로그인 유지
 export function onUserState(callback){
     onAuthStateChanged(auth,async(user)=>{
         if(user){

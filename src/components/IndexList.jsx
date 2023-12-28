@@ -37,11 +37,12 @@ export default IndexList
 const IndexClicker = styled.div`
     text-align:center;
     justify-content:center;
-    background-color:white;
+    background-color:lightgreen;
+    font-size:20px;
     border:solid 1px black;
     position:fixed;
     bottom:30px;
-    right:30px;
+    left:280px;
     width:50px;
     height:100px;
 `
