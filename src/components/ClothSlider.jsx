@@ -16,7 +16,17 @@ const slider={
 const ClothSlider=()=> {
 
     const [temperature, setTemperature] = useState(null);
-    const [folderName , setFolderName] = useState(null)
+    const [folderName , setFolderName] = useState(null);
+
+    const imageCount = {
+        '4' :5,
+       '5_8': 4,
+       '16_9' : 2,
+       '19_17' : 3,
+       '20_22' : 3,
+       '27_23' :2,
+       '28' : 3
+       }
 
     
     const getCurrentWeather = (temp) => {
@@ -26,7 +36,7 @@ const ClothSlider=()=> {
 
     const getImageFolder = (temperature)=>{
         if(temperature<5){
-            return '4'
+            return '19_17'
         }
         else if(temperature >=5 && temperature <9){
             return '5_8'
@@ -56,9 +66,15 @@ const ClothSlider=()=> {
     },[temperature])
 
     const items=[
+        {src:`/clothicon/${folderName}`},
+        {src:`/clothicon/${folderName}`},
+        {src:`/clothicon/${folderName}`},
+        {src:`/clothicon/${folderName}`},
         {src:`/clothicon/${folderName}`}
     ]
     
+    const imgCountResult = imageCount[folderName];
+    console.log(imgCountResult);
 
     return (
         <>
