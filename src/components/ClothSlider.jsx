@@ -5,7 +5,6 @@ import {Autoplay} from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination'; 
-import Head from './Head';
 import OpenWeatherDisplay from './OpenWeatherDisplay';
 
 
@@ -26,21 +25,21 @@ const ClothSlider=()=> {
     // console.log(temperature);
 
     const getImageFolder = (temperature)=>{
-        if(temperature<=4){
+        if(temperature<5){
             return '4'
         }
-        else if(temperature >=5 && temperature <=8){
+        else if(temperature >=5 && temperature <9){
             return '5_8'
-        }else if(temperature >= 9 && temperature <= 16){
+        }else if(temperature >= 9 && temperature < 17){
             return '16_9'
         }
-        else if(temperature >= 17 && temperature <= 19){
+        else if(temperature >= 17 && temperature < 20){
             return '19_17'
         }
-        else if(temperature >= 20 && temperature <= 22){
+        else if(temperature >= 20 && temperature < 23){
             return '20_22'
         }
-        else if(temperature >= 23 && temperature <= 27){
+        else if(temperature >= 23 && temperature < 28){
             return '27_23'
         }
         else if(temperature >= 28){
@@ -56,11 +55,10 @@ const ClothSlider=()=> {
         }
     },[temperature])
 
-    // console.log(folderName);
-
     const items=[
-        {src:`../clothicon/${folderName}`}
+        {src:`/clothicon/${folderName}`}
     ]
+
     return (
         <>
             <OpenWeatherDisplay propFunction={getCurrentWeather} />
@@ -75,10 +73,11 @@ const ClothSlider=()=> {
       {items.map((item, idx) => {
           return (
             <SwiperSlide key={idx}>
-              <img src={item.src} />
+              <img src={`${item.src}/${idx}`} />
             </SwiperSlide>
           );
         })}
+        
             </Swiper>
         </>
     )

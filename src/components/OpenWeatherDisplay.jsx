@@ -11,7 +11,7 @@ function OpenWeatherDisplay(props) {
     
         
     
-    const openWeatherApi="1e387d50f02e1624f01db6925218db94"
+    const openWeatherApi=process.env.REACT_APP_OPENWEATHER_API_KEY;
     
 
 

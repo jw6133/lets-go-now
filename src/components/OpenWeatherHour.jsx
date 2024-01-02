@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 function OpenWeatherHour() {
     const [weatherHour,setWeatherHour]=useState(null);
 
-    const twoWeatherApi="c1a0442808f9041d9d60e0298d249705"
+    const twoWeatherApi=process.env.REACT_APP_OPENWEATHER_SECOND_API_KEY;
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -24,7 +24,7 @@ function OpenWeatherHour() {
             }
     }
 
-    console.log(weatherHour);
+    // console.log(weatherHour);
     return (
         <div>
             aa

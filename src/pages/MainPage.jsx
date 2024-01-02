@@ -47,7 +47,7 @@ function MainPage() {
             </ClothWidget>  
             <SubwayWidget id='3' className={subRollup ? "opened" : null}>
                 <button className='rollupBtn' onClick={sRollup}>rollup</button>
-                {/* {subRollup&&<Subway/>} */}
+                {subRollup&&<Subway/>}
             </SubwayWidget> 
             <BusWidget id='4' className={busRollup ? "opened" : null}>
                 <button className='rollupBtn' onClick={bRollup}>rollup</button>
