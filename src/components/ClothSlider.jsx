@@ -58,6 +58,7 @@ const ClothSlider=()=> {
     const items=[
         {src:`/clothicon/${folderName}`}
     ]
+    
 
     return (
         <>
@@ -73,7 +74,7 @@ const ClothSlider=()=> {
       {items.map((item, idx) => {
           return (
             <SwiperSlide key={idx}>
-              <img src={`${item.src}/${idx}`} />
+              <img src={`${item.src}/${idx}.png`} />
             </SwiperSlide>
           );
         })}
