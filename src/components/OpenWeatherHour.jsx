@@ -73,7 +73,9 @@ function OpenWeatherHour() {
                 {filteredList&&filteredList.map((el)=>{
                     return(
                         <li>
-                            {el.dt_txt} {el.main.temp} {el.weather[0].main}    
+                            Time : {el.dt_txt} <br/>
+                            Temperature : {el.main.temp} <br/>
+                            Weather : {el.weather[0].main} <br/><br/>
                         </li>
                     )
                 })}
