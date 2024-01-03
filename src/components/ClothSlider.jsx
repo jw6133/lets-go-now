@@ -122,11 +122,12 @@ const ClothSlider=()=> {
             <br/>
             <Swiper
                 style={slider}
-                slidesPerView={1}
-                loop
+                slidesPerView={2}
+                slidesPerGroup={2}
+                loop={true}
                 modules={[Autoplay]}
-                autoplay={{delay:1000}}
-                spped={1000}
+                autoplay={{delay:2000}}
+                speed={1000}
     >
       {temperature&&item.map((item, idx) => {
           return (
