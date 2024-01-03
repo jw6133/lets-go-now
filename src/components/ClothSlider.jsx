@@ -17,8 +17,9 @@ const ClothSlider=()=> {
 
     const [temperature, setTemperature] = useState(null);
     const [folderName , setFolderName] = useState(null);
+    const [item,setItem]= useState(null);
 
-    const imageCount = {
+    const imageCounts = {
         '4' :5,
        '5_8': 4,
        '16_9' : 2,
@@ -36,10 +37,10 @@ const ClothSlider=()=> {
 
     const getImageFolder = (temperature)=>{
         if(temperature<5){
-            return '19_17'
+            return '4'
         }
         else if(temperature >=5 && temperature <9){
-            return '5_8'
+            return '8_5'
         }else if(temperature >= 9 && temperature < 17){
             return '16_9'
         }
@@ -65,16 +66,18 @@ const ClothSlider=()=> {
         }
     },[temperature])
 
-    const items=[
-        {src:`/clothicon/${folderName}`},
-        {src:`/clothicon/${folderName}`},
-        {src:`/clothicon/${folderName}`},
-        {src:`/clothicon/${folderName}`},
-        {src:`/clothicon/${folderName}`}
-    ]
+    useEffect(() => {
+        if (folderName !== null) {
+            const count = imageCounts[folderName];
+            const newItems = [];
+            for (let i = 0; i < count; i++) {
+                newItems.push({ src: `/clothicon/${folderName}/${i}.png` });
+            }
+            setItem(newItems);
+        }
+    }, [folderName]);
     
-    const imgCountResult = imageCount[folderName];
-    console.log(imgCountResult);
+    console.log(item)
 
     return (
         <>
@@ -87,10 +90,10 @@ const ClothSlider=()=> {
                 autoplay={{delay:1000}}
                 spped={1000}
     >
-      {items.map((item, idx) => {
+      {item.map((item, idx) => {
           return (
             <SwiperSlide key={idx}>
-              <img src={`${item.src}/${idx}.png`} />
+              <img src={item.src} />
             </SwiperSlide>
           );
         })}
