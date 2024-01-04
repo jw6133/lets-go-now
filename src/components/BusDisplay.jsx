@@ -9,26 +9,43 @@ function BusDisplay() {
     //data.go.kr
     const [busData,setBusData]=useState(null);
     const [station,setStation]=useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const serviceKey='bfb1040b-9548-4804-aa4d-d23b567855eb'
     const stId = '100100118'
     const busRouteId ='100100578'
     const ord="29"
 
-    // useEffect(()=>{
-    //     getBus();
-    // },[])
+    
 
-    const getBus = async()=>{
-        try{
-            const result = await axios.get(`https://apigw.tmoney.co.kr:5556/gateway/saArrInfoByRouteGet/v1?serviceKey=bfb1040b-9548-4804-aa4d-d23b567855eb&stId=50205&busRouteId=90000141&ord=1&busRouteType=1`);
-            setBusData(result);
-            console.log(busData);
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+    const URL = `${PROXY}/gateway/saArrInfoByRouteGet/v1`;
+
+    const getBus = async () => {
+        if (!station.trim()) {
+            console.log('역 정보 없음');
+            return;
         }
-        catch(error){
+        setIsLoading(true);
+        setError(null);
+        try {
+            const params = {
+                serviceKey: 'your-service-key', // Use environment variable here
+                stId: station, // This could be dynamic based on user input
+                busRouteId: '90000141', // You can make this dynamic too
+                ord: '1',
+                busRouteType: '1'
+            };
+            const result = await axios.get(URL, { params });
+            setBusData(result.data); // Adjust this according to the actual response format
+        } catch (error) {
             console.error(error);
+            setError('Failed to load data');
+        } finally {
+            setIsLoading(false);
         }
-    }
+    };
 
     const shootStation=(e)=>{
         setStation(e.target.value);
