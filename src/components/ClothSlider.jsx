@@ -19,6 +19,7 @@ const ClothSlider=()=> {
     const [temperature, setTemperature] = useState(null);
     const [folderName , setFolderName] = useState(null);
     const [item,setItem]= useState(null);
+    const [itemTwo,setItemTwo]=useState(null);
     const [clothMessage,setClothMessage]=useState('');
 
     const imageCounts = {
@@ -103,13 +104,25 @@ const ClothSlider=()=> {
         if (folderName !== null) {
             const count = imageCounts[folderName];
             const newItems = [];
-            for (let i = 0; i < count; i++) {
-                newItems.push({ src: `/clothicon/${folderName}/${i}.png` });
+            for (let i = 0; i < count+1; i++) {
+                newItems.push({ src: `/clothicon/${folderName}/1/${i}.png` });
             }
             setItem(newItems);
         }
     }, [folderName]);
+
+    useEffect(() => {
+        if (folderName !== null) {
+            const count = imageCounts[folderName];
+            const newItems = [];
+            for (let i = 0; i < count+1; i++) {
+                newItems.push({ src: `/clothicon/${folderName}/2/${i}.png` });
+            }
+            setItemTwo(newItems);
+        }
+    }, [folderName]);
     
+    console.log(itemTwo)
 
     return (
         <>
@@ -134,6 +147,27 @@ const ClothSlider=()=> {
             <SwiperSlide key={idx}>
               <img src={item.src} />
             </SwiperSlide>
+            
+          );
+        })}
+        
+            </Swiper>
+
+            <Swiper
+                style={slider}
+                slidesPerView={2}
+                slidesPerGroup={2}
+                loop={true}
+                modules={[Autoplay]}
+                autoplay={{delay:2000}}
+                speed={1000}
+    >
+      {temperature&&itemTwo.map((item, idx) => {
+          return (
+            <SwiperSlide key={idx}>
+              <img src={item.src} />
+            </SwiperSlide>
+            
           );
         })}
         
