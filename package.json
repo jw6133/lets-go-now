@@ -28,7 +28,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy":"https://apigw.tmoney.co.kr",
+  "proxy": "https://apigw.tmoney.co.kr",
   "eslintConfig": {
     "extends": [
       "react-app",

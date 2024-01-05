@@ -21,29 +21,29 @@ function BusDisplay() {
     const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
     const URL = `${PROXY}/gateway/saArrInfoByRouteGet/v1`;
 
-    console.log(stationInfo[2])
-
     const shootStation=(e)=>{
         setStation(e.target.value);
-        console.log(station);
     }
 
     const shootBusName=(e)=>{
         setBusName(e.target.value);
-        console.log(station);
     }
 
     const submitStation=()=>{
         getBus();
     }
 
-    const findStation=()=>{ //작업중 - .노선명 인식 못하고있음.
-        for(let i=0 ; i<46655 ; i++){
+    const findStation=()=>{
+        for(let i=0 ; i<46654 ; i++){
             if(stationInfo[i].노선명===busName&&stationInfo[i].정류소명===station){
                 setSelectstId(stationInfo[i].NODE_ID);
                 setSelectRoute(stationInfo[i].ROUTE_ID);
                 setSelectOrd(stationInfo[i].순번);
                 i=46654;
+            }
+            if(i=46653&&!selectstId){
+                setError('버스명과 정류장명이 잘못 입력되었습니다');
+                return
             }
         }
     }
@@ -53,8 +53,7 @@ function BusDisplay() {
             console.log('역 정보 없음');
             return;
         }
-        console.log(stationInfo[0].노선명);
-        // findStation();
+        findStation();
         setIsLoading(true);
         setError(null);
         try {
@@ -69,7 +68,7 @@ function BusDisplay() {
             setBusData(result.data); // Adjust this according to the actual response format
         } catch (error) {
             console.error(error);
-            setError('Failed to load data');
+            setError("api 오류");
         } finally {
             setIsLoading(false);
         }
@@ -100,7 +99,7 @@ function BusDisplay() {
         <button type='button' onClick={submitStation}>도착정보 조회</button>
                 <br/>
                 <br/>
-                
+                {error&&<span>{error}</span>}
         </>
     )
 }
