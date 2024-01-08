@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import stationInfo from '../stationInfo.json'
 
+//https://www.datoybi.com/http-proxy-middleware/
+
 function BusDisplay() {
+
     const [busData,setBusData]=useState(null);
 
     const [station,setStation]=useState('');
@@ -16,10 +19,9 @@ function BusDisplay() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const tServiceKey='bfb1040b-9548-4804-aa4d-d23b567855eb';
+    // const dServiceKey=process.env.REACT_APP_DATAGOKR_BUS_API_KEY;
+    const dServiceKey='t9%2B9FhdE4WKAc9hoG0X566SsYpzJDRmtviyl1uTtBEgN%2Bjm5%2F5BNEcUTVVTkiaUUrxoJBVzAE0TQRtqdyFqAfA%3D%3D'
 
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-    const URL = `${PROXY}/gateway/saArrInfoByRouteGet/v1`;
 
     const shootStation=(e)=>{
         setStation(e.target.value);
@@ -57,15 +59,8 @@ function BusDisplay() {
         setIsLoading(true);
         setError(null);
         try {
-            const params = {
-                serviceKey: tServiceKey, // Use environment variable here
-                stId: '110000387', // This could be dynamic based on user input
-                busRouteId: '100100037', // You can make this dynamic too
-                ord: '1',
-                busRouteType: '1'
-            };
-            const result = await axios.get(URL, { params });
-            setBusData(result.data); // Adjust this according to the actual response format
+            const result = await axios.get(`/api/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=104900054&busRouteId=104900005&ord=3`)
+            console.log(result);
         } catch (error) {
             console.error(error);
             setError("api 오류");
@@ -74,7 +69,16 @@ function BusDisplay() {
         }
     };
 
+
     //https://apigw.tmoney.co.kr:5556/gateway/saArrInfoByRouteGet/v1/arrive/getArrInfoByRoute?serviceKey=${tServiceKey}&stId=50205&busRouteId=90000141&ord=1&busRouteType=1
+    // const params = {
+            //     serviceKey: tServiceKey, // Use environment variable here
+            //     stId: '110000387', // This could be dynamic based on user input
+            //     busRouteId: '100100037', // You can make this dynamic too
+            //     ord: '1',
+            //     busRouteType: '1'
+            // };
+            // const result = await axios.get(URL, { params });
 
 
     return (
