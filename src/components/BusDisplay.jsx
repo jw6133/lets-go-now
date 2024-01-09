@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import stationInfo from '../stationInfo.json'
+import { parseString, xml2js } from 'react-native-xml2js'
 
 //https://www.datoybi.com/http-proxy-middleware/
 
@@ -20,8 +21,7 @@ function BusDisplay() {
     const [error, setError] = useState(null);
 
     // const dServiceKey=process.env.REACT_APP_DATAGOKR_BUS_API_KEY;
-    const dServiceKey='t9%2B9FhdE4WKAc9hoG0X566SsYpzJDRmtviyl1uTtBEgN%2Bjm5%2F5BNEcUTVVTkiaUUrxoJBVzAE0TQRtqdyFqAfA%3D%3D'
-
+    const dServiceKey="t9%2B9FhdE4WKAc9hoG0X566SsYpzJDRmtviyl1uTtBEgN%2Bjm5%2F5BNEcUTVVTkiaUUrxoJBVzAE0TQRtqdyFqAfA%3D%3D"
 
     const shootStation=(e)=>{
         setStation(e.target.value);
@@ -31,36 +31,56 @@ function BusDisplay() {
         setBusName(e.target.value);
     }
 
-    const submitStation=()=>{
-        getBus();
+    const submitStation=(e)=>{
+        console.log(busName);
+        console.log(station);
+        findStation(busName,station);
     }
 
-    const findStation=()=>{
-        for(let i=0 ; i<46654 ; i++){
-            if(stationInfo[i].노선명===busName&&stationInfo[i].정류소명===station){
-                setSelectstId(stationInfo[i].NODE_ID);
-                setSelectRoute(stationInfo[i].ROUTE_ID);
-                setSelectOrd(stationInfo[i].순번);
-                i=46654;
+
+    const findStation=(aBusName,aStation)=>{
+        setSelectOrd(null);
+        setSelectRoute(null);
+        setSelectstId(null);
+        {[...Array(46654)].map((value,index)=>{
+            if(stationInfo[index].노선명==aBusName&&stationInfo[index].정류소명==aStation){
+                setSelectstId(stationInfo[index].NODE_ID);
+                setSelectRoute(stationInfo[index].ROUTE_ID);
+                setSelectOrd(stationInfo[index].순번);
             }
-            if(i=46653&&!selectstId){
+            if(index=46653&&!selectstId){
                 setError('버스명과 정류장명이 잘못 입력되었습니다');
                 return
             }
-        }
+        })}
+        getBus();
     }
 
     const getBus = async () => {
+        setIsLoading(true);
+        setError(null);
         if (!station.trim()) {
             console.log('역 정보 없음');
             return;
         }
-        findStation();
-        setIsLoading(true);
-        setError(null);
         try {
-            const result = await axios.get(`/api/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=104900054&busRouteId=104900005&ord=3`)
-            console.log(result);
+            fetch(`/api/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`)
+            .then((res)=>res.text())
+            .then((data)=>{
+                const cleanedString=data.replace('\ufeff','');
+                let busJsonData;
+                parseString(cleanedString,(err,result)=>{
+                    if(err !=null){
+                        console.log(err);
+                        return
+                    }
+                    busJsonData=JSON.parse(JSON.stringify(result));
+                    console.log(busJsonData);
+                });
+                return
+            })
+            
+            
         } catch (error) {
             console.error(error);
             setError("api 오류");
@@ -68,18 +88,6 @@ function BusDisplay() {
             setIsLoading(false);
         }
     };
-
-
-    //https://apigw.tmoney.co.kr:5556/gateway/saArrInfoByRouteGet/v1/arrive/getArrInfoByRoute?serviceKey=${tServiceKey}&stId=50205&busRouteId=90000141&ord=1&busRouteType=1
-    // const params = {
-            //     serviceKey: tServiceKey, // Use environment variable here
-            //     stId: '110000387', // This could be dynamic based on user input
-            //     busRouteId: '100100037', // You can make this dynamic too
-            //     ord: '1',
-            //     busRouteType: '1'
-            // };
-            // const result = await axios.get(URL, { params });
-
 
     return (
         <>
