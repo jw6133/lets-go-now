@@ -15,6 +15,9 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth();
 const database =getDatabase(app);
 
+provider.setCustomParameters({
+    prompt : 'select_account'
+}) //자동로그인방지
 export async function googleLogin(){
     try{
         const result = await signInWithPopup(auth,provider);

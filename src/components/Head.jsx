@@ -18,7 +18,7 @@ function Head() {
             setUser(user);
         })
     },[])
-
+    
 
     const gLogin = async () => {
         try {
@@ -46,11 +46,10 @@ function Head() {
             <span> Lets Go NOW </span>
             {user ? (
                 <>
-                    {user && isLogin && <UserData user={user} />}
-                    <button onClick={gLogout}>로그아웃</button>
-                </>
-            ) : (
-                <button onClick={gLogin}>구글 로그인</button>
+                    <UserData user={user} />
+                    <button className='logOutBtn' onClick={gLogout}>로그아웃</button>
+                </>) : (
+                <button className='loginBtn' onClick={gLogin}>구글 로그인</button>
             )}
             <OpenWeatherDisplay propFunction={dummyProps}/>
         </HeadContainer>
