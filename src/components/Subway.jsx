@@ -29,7 +29,6 @@ function Subway() {
 
     const shootStation=(e)=>{
         setStation(e.target.value);
-        console.log(station);
     }
     const submitStation=()=>{
         setSubwayData(null);

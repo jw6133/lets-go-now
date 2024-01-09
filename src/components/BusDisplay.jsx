@@ -20,8 +20,7 @@ function BusDisplay() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // const dServiceKey=process.env.REACT_APP_DATAGOKR_BUS_API_KEY;
-    const dServiceKey = "t9%2B9FhdE4WKAc9hoG0X566SsYpzJDRmtviyl1uTtBEgN%2Bjm5%2F5BNEcUTVVTkiaUUrxoJBVzAE0TQRtqdyFqAfA%3D%3D"
+    const dServiceKey=process.env.REACT_APP_DATAGOKR_BUS_API_KEY;
 
     const shootStation = (e) => {
         setStation(e.target.value);
