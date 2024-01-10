@@ -23,4 +23,6 @@ code {
 .rollupBtn{
   background: transparent;
   border:none;
+  width: 360px;
+  text-align: center;
 }

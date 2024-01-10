@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 function Subway() {
     const [subwayData,setSubwayData]=useState(null);
+    const [typing,setTyping]=useState(false);
     const [isLoad,setIsLoad]=useState(false);
     const [realtime,setRealtime]= useState([]);
     const [station,setStation]=useState('');
@@ -21,10 +22,16 @@ function Subway() {
             console.error(error)
         }
     }
-    console.log(subwayData)
 
     const shootStation=(e)=>{
         setStation(e.target.value);
+        if(station===""){
+            setTyping(false)
+        }
+        else{
+            setTyping(true)
+        }
+        
     }
     const submitStation=()=>{
         setSubwayData(null);
@@ -105,7 +112,7 @@ function Subway() {
         <button type='button' onClick={submitStation}>역 제출</button>
                 <br/>
                 <br/>
-                {subwayData&&<span>선택된 역 : {station}역</span>}
+                {typing&&<span>선택된 역 : {station}역</span>}
             {subwayData && subwayData.realtimeArrivalList && subwayData.realtimeArrivalList.map((el) => (
                 <ul>
                     <br/>

@@ -116,7 +116,7 @@ function OpenWeatherHour() {
         const filteredArray=[]
         {weatherHArray&&weatherHArray.map((el)=>{
                 if(el.dt_txt>=formattedDate){
-                    if(filteredArray.length<5){
+                    if(filteredArray.length<8){
                         filteredArray.push(el);
                     }
                 }
@@ -134,14 +134,15 @@ function OpenWeatherHour() {
                 {filteredList&&filteredList.map((el)=>{
                     return(
                         <>
-                        <li>
-                            {el.dt_txt} / {el.main.temp}°C <br/>
-                            Weather : {korean(el.weather[0].id)}
+                        <WeatherWrapper>
+                            <WeatherDate>{el.dt_txt}</WeatherDate>
+                            <WeatherTemp>{el.main.temp}°C</WeatherTemp>
+                            <Weather>{korean(el.weather[0].id)}</Weather>
                             <WeatherIcon>
                             <img src={`http://openweathermap.org/img/w/${el.weather[0].icon}.png`}></img>
                             </WeatherIcon>
                             <br/>
-                        </li>
+                        </WeatherWrapper>
                         </>
                     )
                 })}
@@ -153,8 +154,36 @@ function OpenWeatherHour() {
 
 export default OpenWeatherHour
 
+
+const WeatherWrapper = styled.li`
+    display:flex;
+`
 const WeatherIcon = styled.div`
     width:50px;
     height:50px;
+    background-color:white;
+    border:solid 1px black;
+    display:flex;
+`
+const WeatherDate=styled.div`
+    width:90px;
+    height:50px;
+    background-color:white;
+    border:solid 1px black;
+    display:flex;
+`
+const WeatherTemp=styled.div`
+    width:90px;
+    height:50px;
+    background-color:white;
+    border:solid 1px black;
+    display:flex;
+`
+const Weather=styled.div`
+    width:90px;
+    height:50px;
+    background-color:white;
+    border:solid 1px black;
+    display:flex;
 `
 
