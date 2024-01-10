@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import styled from 'styled-components';
 
 function OpenWeatherHour() {
     const [weatherHour,setWeatherHour]=useState(null);
@@ -8,7 +9,6 @@ function OpenWeatherHour() {
     const [tempSave,setTempSave]=useState(null);
     const today = new Date();
     const formattedDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, "0")}-${(today.getDate()).toString().padStart(2,"0")} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
-    console.log(formattedDate);
 
 
     const twoWeatherApi=process.env.REACT_APP_OPENWEATHER_SECOND_API_KEY;
@@ -89,7 +89,10 @@ function OpenWeatherHour() {
         { 962: '허리케인' },
     ]
 
-    //   console.log(weatherDescKo[803])
+      const korean =(id)=>{
+        return weatherDescKo.find((el)=>el[id])[id];
+      } 
+      console.log(korean(200))
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -113,7 +116,7 @@ function OpenWeatherHour() {
         const filteredArray=[]
         {weatherHArray&&weatherHArray.map((el)=>{
                 if(el.dt_txt>=formattedDate){
-                    if(filteredArray.length<7){
+                    if(filteredArray.length<5){
                         filteredArray.push(el);
                     }
                 }
@@ -124,19 +127,22 @@ function OpenWeatherHour() {
     useEffect(()=>{
         getTime();
     },[weatherHArray])
-
-    console.log(filteredList)
     
     return (
         <>
             <ul>
                 {filteredList&&filteredList.map((el)=>{
                     return(
+                        <>
                         <li>
-                            Time : {el.dt_txt} <br/>
-                            Temperature : {el.main.temp} <br/>
-                            Weather : {el.weather[0].main} <br/><br/>
+                            {el.dt_txt} / {el.main.temp}°C <br/>
+                            Weather : {korean(el.weather[0].id)}
+                            <WeatherIcon>
+                            <img src={`http://openweathermap.org/img/w/${el.weather[0].icon}.png`}></img>
+                            </WeatherIcon>
+                            <br/>
                         </li>
+                        </>
                     )
                 })}
             
@@ -146,4 +152,9 @@ function OpenWeatherHour() {
 }
 
 export default OpenWeatherHour
+
+const WeatherIcon = styled.div`
+    width:50px;
+    height:50px;
+`
 
