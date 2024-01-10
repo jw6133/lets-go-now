@@ -99,7 +99,7 @@ transition:500ms;
 `
 
 const BusWidget = styled.div`
-background-color: lightgoldenrodyellow;
+background-color: lightgreen;
 height:20px;
 display:block;
 transition:500ms;

@@ -11,12 +11,12 @@ import styled from 'styled-components';
 
 const slider = {
     width: "100px",
-    height: "100px",
+    height: "50px",
 }
 
 const ClothSlider = () => {
-
-    const [temperature, setTemperature] = useState(null);
+    const [weather,setWeather]=useState(null);
+    const [temperature, setTemperature] = useState(null);   
     const [clothingData, setClothingData] = useState({ items: [], itemsTwo: [], message: '' });
 
     const imageCounts = {
@@ -76,10 +76,12 @@ const ClothSlider = () => {
         }
     }, [temperature]);
 
+
     return (
         <>
-            <OpenWeatherDisplay propFunction={setTemperature} />
-            <br /><br />
+            <WeatherBlock>
+                <OpenWeatherDisplay propFunction={setTemperature} />
+            </WeatherBlock>
             <WeatherRecommend>{clothingData.message}</WeatherRecommend>
             <br />
             <Swiper style={slider} slidesPerView={2}
@@ -116,6 +118,17 @@ const ClothSlider = () => {
 
 export default ClothSlider
 
+const WeatherBlock = styled.div`
+    color:white;
+    display:none;
+    align-items:center;
+    margin-bottom:10px;
+`
+
 const WeatherRecommend = styled.span`
-    
+    margin: 5px 0 ;
+    word-break:keep-all;
+    text-align:center;
+    display:flex;
+    align-items:center;
 `
