@@ -8,6 +8,8 @@ function OpenWeatherHour() {
     const [tempSave,setTempSave]=useState(null);
     const today = new Date();
     const formattedDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, "0")}-${(today.getDate()).toString().padStart(2,"0")} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+    console.log(formattedDate);
+
 
     const twoWeatherApi=process.env.REACT_APP_OPENWEATHER_SECOND_API_KEY;
 
@@ -85,13 +87,9 @@ function OpenWeatherHour() {
         { 960: '폭풍' },
         { 961: '강한 폭풍' },
         { 962: '허리케인' },
-      ]
+    ]
 
     //   console.log(weatherDescKo[803])
-
-    const weatherExchange=(code)=>{
-        return weatherDescKo.code;
-    }
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -127,24 +125,7 @@ function OpenWeatherHour() {
         getTime();
     },[weatherHArray])
 
-    // useEffect(()=>{
-    //     const filteredArray=[];
-    //     if(weatherHArray!==null){
-    //         while(cnt<=5){
-    //             if(weatherHArray[hArrayIdx].dt_txt>formattedDate){
-    //                 filteredArray.push(weatherHArray[hArrayIdx]);
-    //                 cnt=cnt+1;
-    //                 hArrayIdx=hArrayIdx+1;
-    //             }
-    //             else{
-    //                 hArrayIdx=hArrayIdx+1;
-    //             }
-    //         }
-    //     }
-    //     hArrayIdx=0;
-    //     setFilteredList(filteredArray);
-    // },[weatherHArray])
-
+    console.log(filteredList)
     
     return (
         <>
@@ -152,9 +133,9 @@ function OpenWeatherHour() {
                 {filteredList&&filteredList.map((el)=>{
                     return(
                         <li>
-                            {el.dt_txt} <br/>
-                            기온 : {el.main.temp}°C <br/>
-                            날씨 : {el.weather[0].id} <br/><br/>
+                            Time : {el.dt_txt} <br/>
+                            Temperature : {el.main.temp} <br/>
+                            Weather : {el.weather[0].main} <br/><br/>
                         </li>
                     )
                 })}
@@ -165,3 +146,4 @@ function OpenWeatherHour() {
 }
 
 export default OpenWeatherHour
+

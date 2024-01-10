@@ -11,10 +11,6 @@ function Subway() {
     const [station,setStation]=useState('');
     const subwayApi=process.env.REACT_APP_SUBWAY_API_KEY;
 
-    // useEffect(()=>{
-    //     getSubway();
-    // },[]);
-
     const getSubway =async()=>{
         try{
             const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/4/${station}`);
