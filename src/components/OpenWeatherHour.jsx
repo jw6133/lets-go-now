@@ -9,21 +9,19 @@ function OpenWeatherHour() {
     const [tempSave,setTempSave]=useState(null);
     const today = new Date();
     const formattedDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, "0")}-${(today.getDate()).toString().padStart(2,"0")} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
-
-
     const twoWeatherApi=process.env.REACT_APP_OPENWEATHER_SECOND_API_KEY;
 
     const weatherDescKo = [
-        { 201: '가벼운 비를 동반한 천둥구름' },
-        { 200: '비를 동반한 천둥구름' },
-        { 202: '폭우를 동반한 천둥구름' },
-        { 210: '약한 천둥구름' },
-        { 211: '천둥구름' },
-        { 212: '강한 천둥구름' },
-        { 221: '불규칙적 천둥구름' },
-        { 230: '약한 연무를 동반한 천둥구름' },
-        { 231: '연무를 동반한 천둥구름' },
-        { 232: '강한 안개비를 동반한 천둥구름' },
+        { 201: '가벼운 비와 천둥' },
+        { 200: '비를 동반한 천둥' },
+        { 202: '폭우를 동반한 천둥' },
+        { 210: '약한 천둥' },
+        { 211: '천둥' },
+        { 212: '강한 천둥' },
+        { 221: '불규칙적 천둥' },
+        { 230: '약한 안개와 천둥' },
+        { 231: '안개와 천둥' },
+        { 232: '강한 안개비와 천둥' },
         { 300: '가벼운 안개비' },
         { 301: '안개비' },
         { 302: '강한 안개비' },
@@ -39,10 +37,10 @@ function OpenWeatherHour() {
         { 503: '매우 강한 비' },
         { 504: '극심한 비' },
         { 511: '우박' },
-        { 520: '약한 소나기 비' },
-        { 521: '소나기 비' },
-        { 522: '강한 소나기 비' },
-        { 531: '불규칙적 소나기 비' },
+        { 520: '약한 소나기' },
+        { 521: '소나기' },
+        { 522: '강한 소나기' },
+        { 531: '불규칙적 소나기' },
         { 600: '가벼운 눈' },
         { 601: '눈' },
         { 602: '강한 눈' },
@@ -63,11 +61,11 @@ function OpenWeatherHour() {
         { 762: '화산재' },
         { 771: '돌풍' },
         { 781: '토네이도' },
-        { 800: '구름 한 점 없는 맑은 하늘' },
-        { 801: '약간의 구름이 낀 하늘' },
-        { 802: '드문드문 구름이 낀 하늘' },
-        { 803: '구름이 거의 없는 하늘' },
-        { 804: '구름으로 뒤덮인 흐린 하늘' },
+        { 800: '맑은 하늘' },
+        { 801: '약간 흐린 하늘' },
+        { 802: '옅게 흐린 하늘' },
+        { 803: '미약하게 흐린 하늘' },
+        { 804: '흐린 하늘' },
         { 900: '토네이도' },
         { 901: '태풍' },
         { 902: '허리케인' },
@@ -75,13 +73,13 @@ function OpenWeatherHour() {
         { 904: '고온' },
         { 905: '바람부는' },
         { 906: '우박' },
-        { 951: '바람이 거의 없는' },
+        { 951: '미풍' },
         { 952: '약한 바람' },
-        { 953: '부드러운 바람' },
-        { 954: '중간 세기 바람' },
-        { 955: '신선한 바람' },
+        { 953: '산들바람' },
+        { 954: '바람' },
+        { 955: '선선한 바람' },
         { 956: '센 바람' },
-        { 957: '돌풍에 가까운 센 바람' },
+        { 957: '약한 돌풍' },
         { 958: '돌풍' },
         { 959: '심각한 돌풍' },
         { 960: '폭풍' },
@@ -89,10 +87,20 @@ function OpenWeatherHour() {
         { 962: '허리케인' },
     ]
 
-      const korean =(id)=>{
+    //날씨 한글번역
+    const korean =(id)=>{
         return weatherDescKo.find((el)=>el[id])[id];
-      } 
-      console.log(korean(200))
+    }
+    //시간 분해 (날짜/시간)
+    const divideDate=(time)=>{
+        const date= new Date(time);
+        return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, "0")}.${date.getDate()}`;
+    }
+    const divideTime=(time)=>{
+        const date= new Date(time);
+        return `${date.getHours()} : ${(date.getMinutes()).toString().padStart(2,"0")}`;
+    }
+
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -116,7 +124,7 @@ function OpenWeatherHour() {
         const filteredArray=[]
         {weatherHArray&&weatherHArray.map((el)=>{
                 if(el.dt_txt>=formattedDate){
-                    if(filteredArray.length<8){
+                    if(filteredArray.length<7){
                         filteredArray.push(el);
                     }
                 }
@@ -135,7 +143,10 @@ function OpenWeatherHour() {
                     return(
                         <>
                         <WeatherWrapper>
-                            <WeatherDate>{el.dt_txt}</WeatherDate>
+                            <WeatherDate>
+                                {divideDate(el.dt_txt)}<br/>
+                                <div>{divideTime(el.dt_txt)}</div>
+                            </WeatherDate>
                             <WeatherTemp>{el.main.temp}°C</WeatherTemp>
                             <Weather>{korean(el.weather[0].id)}</Weather>
                             <WeatherIcon>
@@ -156,34 +167,43 @@ export default OpenWeatherHour
 
 
 const WeatherWrapper = styled.li`
+    border-radius:30px;
+    justify-content:center;
     display:flex;
-`
-const WeatherIcon = styled.div`
-    width:50px;
-    height:50px;
-    background-color:white;
-    border:solid 1px black;
-    display:flex;
+    background-color:#305893;
+    color:white;
+    padding: 5px 0;
+    margin-bottom:5px;
+    gap:5px;
+    line-height:1.2;
 `
 const WeatherDate=styled.div`
+    text-align:center;
     width:90px;
     height:50px;
-    background-color:white;
-    border:solid 1px black;
-    display:flex;
+    div{
+        width:90px;
+        font-size:20px;
+    }
 `
 const WeatherTemp=styled.div`
     width:90px;
     height:50px;
-    background-color:white;
-    border:solid 1px black;
+    text-align:center;
+    font-size:24px;
     display:flex;
+    align-items:center;
 `
 const Weather=styled.div`
     width:90px;
     height:50px;
-    background-color:white;
-    border:solid 1px black;
+    font-size:14px;
+    word-break:keep-all;
     display:flex;
+    align-items:center;
+`
+const WeatherIcon = styled.div`
+    width:50px;
+    height:50px;
 `
 

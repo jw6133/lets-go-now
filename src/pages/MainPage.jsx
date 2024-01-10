@@ -65,7 +65,7 @@ const MainWrapper=styled.div`
 `
 
 const WeatherWidget = styled.div`
-    background-color:#D5EDBB;
+    background-color:#235191;
     height:20px;
     display:block;
     transition:500ms;
