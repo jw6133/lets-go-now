@@ -27,4 +27,8 @@ code {
   text-align: center;
   color: white;
   border:solid 1px black;
+  &:hover{
+    cursor: pointer;
+    background-color: black;
+  }
 }
