@@ -125,7 +125,7 @@ function OpenWeatherHour() {
         const filteredArray=[]
         {weatherHArray&&weatherHArray.map((el)=>{
                 if(el.dt_txt>=formattedDate){
-                    if(filteredArray.length<7){
+                    if(filteredArray.length<5){
                         filteredArray.push(el);
                     }
                 }
@@ -146,8 +146,8 @@ function OpenWeatherHour() {
                         <>
                         <WeatherWrapper>
                             <WeatherDate>
-                                {divideDate(el.dt_txt)}<br/>
-                                <div>{divideTime(el.dt_txt)}</div>
+                                <span>{divideDate(el.dt_txt)}</span><br/>
+                                <span className='hour'>{divideTime(el.dt_txt)}</span>
                             </WeatherDate>
                             <WeatherTemp>{el.main.temp}°C</WeatherTemp>
                             <Weather>{korean(el.weather[0].id)}</Weather>
@@ -186,32 +186,32 @@ const WeatherWrapper = styled.li`
     line-height:1.2;
 `
 const WeatherDate=styled.div`
-    text-align:center;
+    padding-top:10px;
     width:90px;
-    height:50px;
-    div{
+    height:60px;
+    .hour{
         width:90px;
-        font-size:20px;
+        font-size:24px;
     }
 `
 const WeatherTemp=styled.div`
     width:90px;
-    height:50px;
+    height:70px;
     text-align:right;
     font-size:24px;
     display:flex;
     align-items:center;
 `
 const Weather=styled.div`
-    width:90px;
-    height:50px;
+    width:50px;
+    height:70px;
     font-size:14px;
     word-break:keep-all;
     display:flex;
     align-items:center;
 `
 const WeatherIcon = styled.div`
-    width:50px;
-    height:50px;
+    width:70px;
+    height:70px;
 `
 

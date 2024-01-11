@@ -3,6 +3,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
+import { IoSubway } from "react-icons/io5";
 
 function Subway() {
     const [subwayData,setSubwayData]=useState(null);
@@ -69,31 +70,31 @@ function Subway() {
             return '9'
         }
         else if(lineId=='1061'){
-            return '경중'
+            return 'gungjoong'
         }
         else if(lineId=='1063'){
-            return '경중'
+            return 'gungjoong'
         }
         else if(lineId=='1065'){
-            return '공항'
+            return 'air'
         }
         else if(lineId=='1067'){
-            return '경춘'
+            return 'gungchoon'
         }
         else if(lineId=='1075'){
-            return '수인분당'
+            return 'suin'
         }
         else if(lineId=='1077'){
-            return '신분당'
+            return 'newboon'
         }
         else if(lineId=='1092'){
-            return '우이'
+            return 'ui'
         }
         else if(lineId=='1093'){
-            return '서해'
+            return 'west'
         }
         else if(lineId=='1081'){
-            return '경강'
+            return 'gung'
         }
         else{
             return '호선 에러'
@@ -103,11 +104,8 @@ function Subway() {
 
     return (
         <>
-        <br/>
-        <br/>
-        <MainText>지하철</MainText>
-        <br/>
-        <br/>
+        <SubwayWrapper>
+        <MainText><IoSubway /> Subway</MainText>
         <input type='text' value={station} onChange={shootStation}/>
         <button type='button' onClick={submitStation}>역 제출</button>
                 <br/>
@@ -118,20 +116,38 @@ function Subway() {
                     <br/>
                     <li key={el.btrainNo}>지하철 노선명 : {el.trainLineNm}</li>
                     <li key={el.btrainNo}>도착시간 : {el.arvlMsg2}</li>
-                    <li key={el.btrainNo}>{<img src={`../imgs/subway_icon/${lineCalculator(el.subwayId)}.png`}/>}</li>
+                    <li key={el.btrainNo}>{<img className="linePhoto" src={`subway_icon/${lineCalculator(el.subwayId)}.png`}/>}</li>
                 </ul>
             ))}
+        </SubwayWrapper>
         </>
     )
 }
 
 export default Subway
 
-const MainText = styled.span`
-    font-size:24px;
-    font-weight:bold;
-    img{
-        height:30px;
-        width:30px;
+const SubwayWrapper = styled.div`
+    color:white;
+    input{
+        background:transparent;
+        border:none;
+        border-bottom:solid 1px black;
     }
+    button{
+        background:transparent;
+        color:white;
+        border:none;
+        &:hover{
+            background-color:black;
+        }
+
+    }
+`
+
+const MainText = styled.div`
+    width:360px;
+    font-size:20px;
+    color:yellow;
+    text-align:center;
+    margin:5px 0;
 `

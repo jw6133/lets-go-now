@@ -82,6 +82,10 @@ body{
 	background-color:black;
 	color:white;
 }
+.linePhoto{
+    height:25px;
+    width:25px;
+}
 `
 
 export default GlobalStyle
