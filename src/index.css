@@ -32,3 +32,11 @@ code {
     background-color: black;
   }
 }
+@font-face {
+  font-family: "Roboto Condensed";
+  font-weight: normal;
+  src: url(../src/fonts/RobotoCondensed-VariableFont_wght.ttf);
+}
+body{
+  font-family: "Roboto Condensed";  
+}

@@ -8,12 +8,15 @@ function OpenWeatherDisplay(props) {
     const [weatherData, setWeatherData] = useState([])
     const [weatherMain,setWeatherMain]=useState([]);
 
-    
-        
-    
     const openWeatherApi=process.env.REACT_APP_OPENWEATHER_API_KEY;
-    
 
+    // const getIcon=()=>{
+    //     let icon;
+    //     if(weatherData.weather[0]!==null){
+    //         icon = weatherData.weather[0].icon
+    //     }
+    //     return icon;
+    // }
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -35,18 +38,18 @@ function OpenWeatherDisplay(props) {
     }
 
     props.propFunction(weatherMain.temp);
+    console.log(weatherData)
     
 
     return (
-
+        <>
         <SimpleWeather>
             {weatherData.name}
             <p></p>
             <span>{weatherMain.temp}°C</span>
-            
-            
-        
+            {/* <img src={`http://openweathermap.org/img/w/${getIcon()}.png`}/> */}
         </SimpleWeather>
+        </>
     )
 }
 
@@ -57,4 +60,10 @@ const SimpleWeather=styled.div`
     position:relative;
     right:0%;
     text-align:right;
+    img{
+        padding-left:5px;
+        display:inline;
+        width:25px;
+        height:25px;
+    }
 `

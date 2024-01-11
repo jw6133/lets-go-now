@@ -42,58 +42,58 @@ function Subway() {
     //1009:9호선, 1061:중앙선1063:경의중앙선, 1065:공항철도, 1067:경춘선, 1075:수의분당선 1077:신분당선, 1092:우이신설선, 1093:서해선, 1081:경강선)
     const lineCalculator=(lineId)=>{
         if(lineId=='1001'){
-            return '1호선'
+            return '1'
         }
         else if(lineId=='1002'){
-            return '2호선'
+            return '2'
         }
         else if(lineId=='1003'){
-            return '3호선'
+            return '3'
         }
         else if(lineId=='1004'){
-            return '4호선'
+            return '4'
         }
         else if(lineId=='1005'){
-            return '5호선'
+            return '5'
         }
         else if(lineId=='1006'){
-            return '6호선'
+            return '6'
         }
         else if(lineId=='1007'){
-            return '7호선'
+            return '7'
         }
         else if(lineId=='1008'){
-            return '8호선'
+            return '8'
         }
         else if(lineId=='1009'){
-            return '9호선'
+            return '9'
         }
         else if(lineId=='1061'){
-            return '중앙선'
+            return '경중'
         }
         else if(lineId=='1063'){
-            return '경의중앙선'
+            return '경중'
         }
         else if(lineId=='1065'){
-            return '공항철도선'
+            return '공항'
         }
         else if(lineId=='1067'){
-            return '경춘선'
+            return '경춘'
         }
         else if(lineId=='1075'){
-            return '수인분당선'
+            return '수인분당'
         }
         else if(lineId=='1077'){
-            return '신분당선'
+            return '신분당'
         }
         else if(lineId=='1092'){
-            return '우이신설선'
+            return '우이'
         }
         else if(lineId=='1093'){
-            return '서해선'
+            return '서해'
         }
         else if(lineId=='1081'){
-            return '경강선'
+            return '경강'
         }
         else{
             return '호선 에러'
@@ -118,7 +118,7 @@ function Subway() {
                     <br/>
                     <li key={el.btrainNo}>지하철 노선명 : {el.trainLineNm}</li>
                     <li key={el.btrainNo}>도착시간 : {el.arvlMsg2}</li>
-                    <li key={el.btrainNo}>{lineCalculator(el.subwayId)}</li>
+                    <li key={el.btrainNo}>{<img src={`../imgs/subway_icon/${lineCalculator(el.subwayId)}.png`}/>}</li>
                 </ul>
             ))}
         </>
@@ -130,4 +130,8 @@ export default Subway
 const MainText = styled.span`
     font-size:24px;
     font-weight:bold;
+    img{
+        height:30px;
+        width:30px;
+    }
 `

@@ -68,7 +68,20 @@ body{
 	height:36px;
     border-radius:100%;
 }
-
+.loginBtn{
+	margin-top:10px;
+	height:30px;
+	border-radius:30px;
+	background-color:white;
+	border:solid 1px black;
+}
+.logOutBtn{
+	margin-top:10px;
+	height:30px;
+	border-radius:30px;
+	background-color:black;
+	color:white;
+}
 `
 
 export default GlobalStyle

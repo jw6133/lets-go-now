@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
+import { FaCloudSunRain } from "react-icons/fa";
 
 function OpenWeatherHour() {
     const [weatherHour,setWeatherHour]=useState(null);
@@ -138,6 +139,7 @@ function OpenWeatherHour() {
     
     return (
         <>
+        <MainText><FaCloudSunRain /> Weather</MainText>
             <ul>
                 {filteredList&&filteredList.map((el)=>{
                     return(
@@ -165,7 +167,13 @@ function OpenWeatherHour() {
 
 export default OpenWeatherHour
 
-
+const MainText = styled.div`
+    width:360px;
+    color: white;
+    font-size:20px;
+    text-align:center;
+    margin:5px 0;
+`
 const WeatherWrapper = styled.li`
     border-radius:30px;
     justify-content:center;
@@ -189,7 +197,7 @@ const WeatherDate=styled.div`
 const WeatherTemp=styled.div`
     width:90px;
     height:50px;
-    text-align:center;
+    text-align:right;
     font-size:24px;
     display:flex;
     align-items:center;

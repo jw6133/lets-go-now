@@ -37,22 +37,6 @@ function BusDisplay() {
         findStation(busName, station);
     }
 
-
-    // const findStation=(aBusName,aStation)=>{
-    //     {[...Array(46654)].map((value,index)=>{
-    //         if(stationInfo[index].노선명==aBusName&&stationInfo[index].정류소명==aStation){
-    //             setSelectstId(stationInfo[index].NODE_ID);
-    //             setSelectRoute(stationInfo[index].ROUTE_ID);
-    //             setSelectOrd(stationInfo[index].순번);
-    //         }
-    //         if(index=46653&&!selectstId){
-    //             setError('버스명과 정류장명이 잘못 입력되었습니다');
-    //             return
-    //         }
-    //     })}
-    //     getBus();
-    // }
-
     const findStation = (aBusName, aStation) => {
         const foundStation = stationInfo.find(station =>
             station.노선명 === aBusName && station.정류소명 === aStation);
