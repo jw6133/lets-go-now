@@ -105,20 +105,18 @@ function Subway() {
     return (
         <>
         <SubwayWrapper>
-        <MainText><IoSubway /> Subway</MainText>
-        <input type='text' value={station} onChange={shootStation}/>
-        <button type='button' onClick={submitStation}>역 제출</button>
-                <br/>
-                <br/>
-                {typing&&<span>선택된 역 : {station}역</span>}
-            {subwayData && subwayData.realtimeArrivalList && subwayData.realtimeArrivalList.map((el) => (
-                <ul>
-                    <br/>
-                    <li key={el.btrainNo}>지하철 노선명 : {el.trainLineNm}</li>
-                    <li key={el.btrainNo}>도착시간 : {el.arvlMsg2}</li>
-                    <li key={el.btrainNo}>{<img className="linePhoto" src={`subway_icon/${lineCalculator(el.subwayId)}.png`}/>}</li>
-                </ul>
-            ))}
+            <MainText><IoSubway /> Subway</MainText>
+            <InfoInput>
+                <input type='text' placeholder="역 명 입력.." value={station} onChange={shootStation}/>
+                <button type='button' onClick={submitStation}>역 제출</button>
+            </InfoInput>
+                {typing&&<div className='selectedStation'>- 선택된 역 : {station}역 -</div>}
+                {subwayData && subwayData.realtimeArrivalList && subwayData.realtimeArrivalList.map((el) => (
+                    <ul>
+                        <li key={el.btrainNo}>지하철 노선명 : {el.trainLineNm}</li>
+                        <li key={el.btrainNo}>{el.arvlMsg2} {<img className="linePhoto" src={`subway_icon/${lineCalculator(el.subwayId)}.png`}/>}</li>
+                    </ul>
+                ))}
         </SubwayWrapper>
         </>
     )
@@ -129,9 +127,8 @@ export default Subway
 const SubwayWrapper = styled.div`
     color:white;
     input{
-        background:transparent;
-        border:none;
-        border-bottom:solid 1px black;
+        background:white;
+        border:solid 1px black;
     }
     button{
         background:transparent;
@@ -143,12 +140,39 @@ const SubwayWrapper = styled.div`
         }
 
     }
-`
+    .selectedStation{
+        width:100%;
+        text-align:center;
+        justify-content:center;
+        margin-bottom:10px;
+    }
+    ul{
+        background-color:rgba(128,128,128,0.5);
+        border-radius:30px;
+        margin-bottom:10px;
+        font-size:20px;
+        li{
 
+        }
+    }
+`
+const InfoInput=styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-top:10px;
+    margin-bottom:20px;
+    input{
+        height:21px;
+    }
+    button{
+        margin-left:10px;
+    }
+`
 const MainText = styled.div`
-    width:360px;
+    width:100%;
     font-size:20px;
     color:yellow;
     text-align:center;
-    margin:5px 0;
+    margin:10px 0;
 `

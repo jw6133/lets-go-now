@@ -125,7 +125,7 @@ function OpenWeatherHour() {
         const filteredArray=[]
         {weatherHArray&&weatherHArray.map((el)=>{
                 if(el.dt_txt>=formattedDate){
-                    if(filteredArray.length<5){
+                    if(filteredArray.length<6){
                         filteredArray.push(el);
                     }
                 }
@@ -170,9 +170,9 @@ export default OpenWeatherHour
 const MainText = styled.div`
     width:100%;
     color: white;
-    font-size:20px;
+    font-size:28px;
     text-align:center;
-    margin:5px 0;
+    margin:10px 0;
 `
 const WeatherWrapper = styled.li`
     border-radius:30px;
@@ -181,7 +181,7 @@ const WeatherWrapper = styled.li`
     background-color:#305893;
     color:white;
     padding: 5px 0;
-    margin-bottom:5px;
+    margin-bottom:10px;
     gap:5px;
     line-height:1.2;
 `

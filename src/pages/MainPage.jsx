@@ -4,6 +4,8 @@ import Subway from '../components/Subway';
 import OpenWeatherHour from '../components/OpenWeatherHour';
 import ClothSlider from '../components/ClothSlider';
 import BusDisplay from '../components/BusDisplay';
+import { IoSubway } from "react-icons/io5";
+import { FaCloudSunRain } from "react-icons/fa";
 
 
 function MainPage() {
@@ -38,19 +40,19 @@ function MainPage() {
     return (
         <MainWrapper className='inner'>
             <WeatherWidget id='1' className={weatherRollup ? "opened" : null}>
-                <button className="rollupBtn" onClick={wRollup}>rollup</button>
+                <button className="rollupBtn" onClick={wRollup}><FaCloudSunRain/> Weather Info</button>
                 {weatherRollup&&<OpenWeatherHour/>}
             </WeatherWidget>
             <ClothWidget id='2' className={clothRollup ? "opened" : null}>
-                <button className="rollupBtn" onClick={cRollup}>rollup</button>
+                <button className="rollupBtn" onClick={cRollup}>Cloth Recommend</button>
                 {clothRollup&&<ClothSlider/>}
             </ClothWidget>  
             <SubwayWidget id='3' className={subRollup ? "opened" : null}>
-                <button className='rollupBtn' onClick={sRollup}>rollup</button>
+                <button className='rollupBtn' onClick={sRollup}><IoSubway /> Find Subway</button>
                 {subRollup&&<Subway/>}
             </SubwayWidget> 
             <BusWidget id='4' className={busRollup ? "opened" : null}>
-                <button className='rollupBtn' onClick={bRollup}>rollup</button>
+                <button className='rollupBtn' onClick={bRollup}>Find Bus</button>
                 {busRollup&&<BusDisplay/>}
             </BusWidget>
         </MainWrapper>
@@ -66,46 +68,49 @@ const MainWrapper=styled.div`
 
 const WeatherWidget = styled.div`
     background-color:#235191;
-    height:20px;
+    height:40px;
     display:block;
     transition:500ms;
 
     &.opened{
-        height:500px;
+        height:660px;
     }
     `
 const ClothWidget = styled.div`
 background-color: lightblue;
-height:20px;
+height:40px;
 display:block;
 transition:500ms;
 
 &.opened{
-    height:500px;
+    height:660px;
 }
 
 `
 
 const SubwayWidget = styled.div`
-background-color: gray;
-height:20px;
+background-color: #808080;
+height:40px;
 display:block;
 transition:500ms;
+button{
+    color:yellow;
+}
 
 &.opened{
-    height:500px;
+    height:660px;
 }
 
 `
 
 const BusWidget = styled.div`
 background-color: lightgreen;
-height:20px;
+height:40px;
 display:block;
 transition:500ms;
 
 &.opened{
-    height:500px;
+    height:660px;
 }
 
 `
