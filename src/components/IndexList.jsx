@@ -40,7 +40,7 @@ const IndexClicker = styled.div`
     border: solid 1px black;
     position: fixed;
     bottom: 50px;
-    left: 700px;
+    left: 320px;
     width: 50px;
     height: 150px;
     div{
