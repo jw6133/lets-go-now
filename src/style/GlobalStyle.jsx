@@ -62,6 +62,7 @@ img{
 }
 body{
 	width:375px;
+	max-width:400px;
 }
 .user-img{
 	width: 36px;
