@@ -61,7 +61,6 @@ img{
     padding:100px 0px;
 }
 body{
-	width:375px;
 	max-width:400px;
 }
 .user-img{

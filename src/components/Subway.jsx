@@ -137,6 +137,7 @@ const SubwayWrapper = styled.div`
         background:transparent;
         color:white;
         border:none;
+        border : solid 1px black;
         &:hover{
             background-color:black;
         }
