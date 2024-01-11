@@ -68,7 +68,7 @@ export default Head
 
 const HeadContainer = styled.div`
     background-color:lemonchiffon;
-    width:360px;
+    width:100%;
     height:50px;
     border-bottom:solid 1px rgba(0,0,0,0.7);
     display:flex;

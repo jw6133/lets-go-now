@@ -23,7 +23,7 @@ code {
 .rollupBtn{
   background: transparent;
   border:none;
-  width: 360px;
+  width: 100%;
   text-align: center;
   color: white;
   border:solid 1px black;

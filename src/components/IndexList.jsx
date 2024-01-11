@@ -22,7 +22,6 @@ function IndexList() {
                         <Link to={link.to} spy={true} smooth={true}>
                             <span aria-label={link.label}>{link.icon}</span>
                         </Link>
-                        <br/>
                     </div>
                 ))}
             </div>
@@ -34,15 +33,27 @@ export default IndexList;
 
 const IndexClicker = styled.div`
     text-align: center;
+    align-items:center;
     justify-content: center;
     background-color: lightgreen;
     font-size: 20px;
     border: solid 1px black;
     position: fixed;
-    bottom: 30px;
-    left: 280px;
+    bottom: 50px;
+    left: 700px;
     width: 50px;
-    height: 100px;
+    height: 150px;
+    div{
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        width:30px;
+        height: 30px;
+        margin-bottom:10px;
+        span{
+            margin-left:13px;
+        }
+    }
     div:hover {
         cursor: pointer;
         opacity: 0.8;

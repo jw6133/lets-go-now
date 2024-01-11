@@ -168,7 +168,7 @@ function OpenWeatherHour() {
 export default OpenWeatherHour
 
 const MainText = styled.div`
-    width:360px;
+    width:100%;
     color: white;
     font-size:20px;
     text-align:center;
