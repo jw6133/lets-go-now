@@ -39,14 +39,14 @@ function MainPage() {
     
     return (
         <MainWrapper className='inner'>
-            <WeatherWidget id='1' className={weatherRollup ? "opened" : null}>
-                <button className="rollupBtn" onClick={wRollup}><FaCloudSunRain/> Weather Info</button>
-                {weatherRollup&&<OpenWeatherHour/>}
-            </WeatherWidget>
             <ClothWidget id='2' className={clothRollup ? "opened" : null}>
                 <button className="rollupBtn" onClick={cRollup}>Cloth Recommend</button>
                 {clothRollup&&<ClothSlider/>}
             </ClothWidget>  
+            <WeatherWidget id='1' className={weatherRollup ? "opened" : null}>
+                <button className="rollupBtn" onClick={wRollup}><FaCloudSunRain/> Weather Info</button>
+                {weatherRollup&&<OpenWeatherHour/>}
+            </WeatherWidget>
             <SubwayWidget id='3' className={subRollup ? "opened" : null}>
                 <button className='rollupBtn' onClick={sRollup}><IoSubway /> Find Subway</button>
                 {subRollup&&<Subway/>}
@@ -98,7 +98,7 @@ button{
 }
 
 &.opened{
-    height:660px;
+    height:700px;
 }
 
 `

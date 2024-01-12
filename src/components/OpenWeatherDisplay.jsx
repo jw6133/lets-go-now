@@ -38,8 +38,6 @@ function OpenWeatherDisplay(props) {
     }
 
     props.propFunction(weatherMain.temp);
-    console.log(weatherData)
-    
 
     return (
         <>

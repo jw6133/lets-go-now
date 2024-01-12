@@ -15,7 +15,7 @@ function Subway() {
 
     const getSubway =async()=>{
         try{
-            const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/4/${station}`);
+            const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/8/${station}`);
             setSubwayData(result.data);
             setIsLoad(true);
         }
@@ -102,6 +102,8 @@ function Subway() {
 
     }
 
+    console.log(subwayData);
+
     return (
         <>
         <SubwayWrapper>
@@ -113,8 +115,10 @@ function Subway() {
                 {typing&&<div className='selectedStation'>- 선택된 역 : {station}역 -</div>}
                 {subwayData && subwayData.realtimeArrivalList && subwayData.realtimeArrivalList.map((el) => (
                     <ul>
+                        <li key={el.btrainNo} className='linePhoto'>{<img src={`subway_icon/${lineCalculator(el.subwayId)}.png`}/>}</li>
                         <li key={el.btrainNo}>지하철 노선명 : {el.trainLineNm}</li>
-                        <li key={el.btrainNo}>{el.arvlMsg2} {<img className="linePhoto" src={`subway_icon/${lineCalculator(el.subwayId)}.png`}/>}</li>
+                        <li key={el.btrainNo}>현재 위치 : {el.arvlMsg3}</li>
+                        <li key={el.btrainNo}>{el.arvlMsg2}</li>
                     </ul>
                 ))}
         </SubwayWrapper>
@@ -144,15 +148,29 @@ const SubwayWrapper = styled.div`
         width:100%;
         text-align:center;
         justify-content:center;
-        margin-bottom:10px;
+        margin:10px 0;
     }
     ul{
-        background-color:rgba(128,128,128,0.5);
+        height:60px;
+        margin-bottom:10px;
+        padding-top:5px;
+        position:relative;
+        background-color:rgba(160,160,160,0.3);
         border-radius:30px;
         margin-bottom:10px;
-        font-size:20px;
+        font-size:14px;
         li{
-
+            position:relative;
+            left:60px;
+            margin-bottom:5px;
+            &:last-of-type{
+                margin-bottom:0px;
+            }
+            &.linePhoto{
+                position:absolute;
+                left:20px;
+                top:17px;
+            }
         }
     }
 `

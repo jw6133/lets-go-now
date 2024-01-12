@@ -182,7 +182,7 @@ const WeatherWrapper = styled.li`
     color:white;
     padding: 5px 0;
     margin-bottom:10px;
-    gap:5px;
+    gap:15px;
     line-height:1.2;
 `
 const WeatherDate=styled.div`
@@ -205,7 +205,7 @@ const WeatherTemp=styled.div`
 const Weather=styled.div`
     width:50px;
     height:70px;
-    font-size:14px;
+    font-size:18px;
     word-break:keep-all;
     display:flex;
     align-items:center;
