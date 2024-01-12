@@ -6,6 +6,7 @@ import ClothSlider from '../components/ClothSlider';
 import BusDisplay from '../components/BusDisplay';
 import { IoSubway } from "react-icons/io5";
 import { FaCloudSunRain } from "react-icons/fa";
+import { TbBusStop } from "react-icons/tb";
 
 
 function MainPage() {
@@ -40,19 +41,19 @@ function MainPage() {
     return (
         <MainWrapper className='inner'>
             <ClothWidget id='2' className={clothRollup ? "opened" : null}>
-                <button className="rollupBtn" onClick={cRollup}>Cloth Recommend</button>
+                <button className="rollupBtn" onClick={cRollup}><span>Cloth Recommend</span></button>
                 {clothRollup&&<ClothSlider/>}
             </ClothWidget>  
             <WeatherWidget id='1' className={weatherRollup ? "opened" : null}>
-                <button className="rollupBtn" onClick={wRollup}><FaCloudSunRain/> Weather Info</button>
+                <button className="rollupBtn" onClick={wRollup}><FaCloudSunRain/><span>Weather Info</span></button>
                 {weatherRollup&&<OpenWeatherHour/>}
             </WeatherWidget>
             <SubwayWidget id='3' className={subRollup ? "opened" : null}>
-                <button className='rollupBtn' onClick={sRollup}><IoSubway /> Find Subway</button>
+                <button className='rollupBtn' onClick={sRollup}><IoSubway /><span>Find Subway</span></button>
                 {subRollup&&<Subway/>}
             </SubwayWidget> 
             <BusWidget id='4' className={busRollup ? "opened" : null}>
-                <button className='rollupBtn' onClick={bRollup}>Find Bus</button>
+                <button className='rollupBtn' onClick={bRollup}><TbBusStop/><span>Find Bus</span></button>
                 {busRollup&&<BusDisplay/>}
             </BusWidget>
         </MainWrapper>
@@ -71,6 +72,15 @@ const WeatherWidget = styled.div`
     height:40px;
     display:block;
     transition:500ms;
+    button{
+        span{
+            margin-left:5px;
+        }
+        text-align:center;
+        justify-content:center;
+        display:flex;
+        align-items:center;
+    }
 
     &.opened{
         height:660px;
@@ -81,6 +91,15 @@ background-color: lightblue;
 height:40px;
 display:block;
 transition:500ms;
+    button{
+        span{
+            margin-left:5px;
+        }
+        text-align:center;
+        justify-content:center;
+        display:flex;
+        align-items:center;
+    }
 
 &.opened{
     height:660px;
@@ -94,6 +113,13 @@ height:40px;
 display:block;
 transition:500ms;
 button{
+    span{
+            margin-left:5px;
+        }
+    text-align:center;
+    justify-content:center;
+    display:flex;
+    align-items:center;
     color:yellow;
 }
 
@@ -108,7 +134,17 @@ background-color: lightgreen;
 height:40px;
 display:block;
 transition:500ms;
-
+button{
+    span{
+            margin-left:5px;
+        }
+    text-align:center;
+    justify-content:center;
+    display:flex;
+    align-items:center;
+    background-color:transparent;
+    color:white;
+}
 &.opened{
     height:660px;
 }

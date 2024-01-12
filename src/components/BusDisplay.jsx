@@ -31,8 +31,6 @@ function BusDisplay() {
     }
 
     const submitStation = (e) => {
-        console.log(busName);
-        console.log(station)
         setBusData(null);
         findStation(busName, station);
     }
@@ -99,6 +97,24 @@ function BusDisplay() {
         {busData&&console.log(busData.ServiceResult.msgBody[0].itemList[0])};
     },[busData])
 
+    const lastBusCal=(time)=>{
+        console.log(time);
+        const cut=time.slice(0,-2);
+        // const year= cut.substr(0,4);
+        // const month= cut.substr(4,2);
+        // const day= cut.substr(6,2);
+        const hour = cut.substr(8,2);
+        const min = cut.substr(10,2);
+        const lastBusTime=`${hour}시 ${min}분`;
+        if(hour==''){
+            return '막차시간을 불러오지 못하였습니다. 다시 시도해주세요.'
+        }
+        else{
+            return lastBusTime;
+        }
+
+    }
+
     return (
         <>
             <br />
@@ -127,6 +143,8 @@ function BusDisplay() {
         <span>현재 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg1}</span>
         <br/>
         <span>다음 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg2}</span>
+        <br/>
+        <span>막차시간 : {lastBusCal(busData.ServiceResult.msgBody[0].itemList[0].lastTm[0])}</span>
         </>
         }
         </>
