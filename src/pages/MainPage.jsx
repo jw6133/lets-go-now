@@ -143,7 +143,7 @@ button{
     display:flex;
     align-items:center;
     background-color:transparent;
-    color:white;
+    color:black;
 }
 &.opened{
     height:660px;
