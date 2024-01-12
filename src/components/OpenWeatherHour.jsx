@@ -139,7 +139,7 @@ function OpenWeatherHour() {
     
     return (
         <>
-        <MainText><FaCloudSunRain /> Weather</MainText>
+        <MainText><FaCloudSunRain /> <span>Weather</span></MainText>
             <ul>
                 {filteredList&&filteredList.map((el)=>{
                     return(
@@ -173,6 +173,12 @@ const MainText = styled.div`
     font-size:28px;
     text-align:center;
     margin:10px 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    span{
+        margin-left:5px;
+    }
 `
 const WeatherWrapper = styled.li`
     border-radius:30px;

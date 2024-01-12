@@ -15,7 +15,7 @@ function Subway() {
 
     const getSubway =async()=>{
         try{
-            const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/8/${station}`);
+            const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/7/${station}`);
             setSubwayData(result.data);
             setIsLoad(true);
         }
@@ -107,7 +107,7 @@ function Subway() {
     return (
         <>
         <SubwayWrapper>
-            <MainText><IoSubway /> Subway</MainText>
+            <MainText><IoSubway /> <span>Subway</span></MainText>
             <InfoInput>
                 <input type='text' placeholder="역 명 입력.." value={station} onChange={shootStation}/>
                 <button type='button' onClick={submitStation}>역 제출</button>
@@ -152,7 +152,7 @@ const SubwayWrapper = styled.div`
     }
     ul{
         height:60px;
-        margin-bottom:10px;
+        margin-bottom:5px;
         padding-top:5px;
         position:relative;
         background-color:rgba(160,160,160,0.3);
@@ -189,8 +189,14 @@ const InfoInput=styled.div`
 `
 const MainText = styled.div`
     width:100%;
-    font-size:20px;
+    font-size:28px;
     color:yellow;
     text-align:center;
     margin:10px 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    span{
+        margin-left:5px;
+    }
 `

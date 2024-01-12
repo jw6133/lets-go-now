@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import stationInfo from '../stationInfo.json'
 import { parseString, xml2js } from 'react-native-xml2js'
+import { TbBusStop } from "react-icons/tb";
 
 //https://www.datoybi.com/http-proxy-middleware/
 
@@ -117,47 +118,133 @@ function BusDisplay() {
 
     return (
         <>
-            <br />
-            <br />
-            <MainText>버스</MainText>
-            <br />
-            <br />
-            버스명 :
+        <BusWrapper>
+            <MainText><TbBusStop/> <span>Bus</span></MainText>
+            <BusInputForm>
+            <p>
+            버스명과 정류장명을 정확히 입력해주세요.<br/>
+            버스에 따라 막차 시간이 조회가 안될 수 있습니다.
+            </p>
+            <span className='busMenu'>버스명 :</span>
             <input type='text' value={busName} onChange={shootBusName} />
-            <br />
-            정류장명 :
+            <span className='stationMenu'>정류장명 :</span>
             <input type='text' value={station} onChange={shootStation} />
-            <br />
-            <br />
+            </BusInputForm>
             <CurrentBus>
-                현재 지정된 정보<br />
-                버스명 : {busName}<br />
-                정류장명 : {station}
+                <span>현재 지정된 정보</span>
+                <span>버스명 : {busName}</span>
+                <span>정류장명 : {station}</span>
             </CurrentBus>
-            <button type='button' onClick={submitStation}>도착정보 조회</button>
-            <br />
-            <br />
+            <button type='button' className='submitBtn' onClick={submitStation}>도착정보 조회</button>
+            
+
             {isLoading && <p>로딩 중...</p>}
         {error && <span>오류: {error}</span>}
         {busData && <>
-        <span>현재 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg1}</span>
-        <br/>
-        <span>다음 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg2}</span>
-        <br/>
-        <span>막차시간 : {lastBusCal(busData.ServiceResult.msgBody[0].itemList[0].lastTm[0])}</span>
+        <ul>
+            <li className='busName'>{busData.ServiceResult.msgBody[0].itemList[0].busRouteAbrv}</li>
+            <li>현재 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg1}</li>
+            <li>다음 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg2}</li>
+            <li>막차시간 : {lastBusCal(busData.ServiceResult.msgBody[0].itemList[0].lastTm[0])}</li>
+        </ul>
         </>
         }
+        </BusWrapper>
         </>
     )
 }
 
 export default BusDisplay
-
-const MainText = styled.span`
-    font-size:24px;
-    font-weight:bold;
+const BusWrapper=styled.div`
+    input{
+        background:white;
+        border:solid 1px black;
+    }
+    button{
+        background:transparent;
+        color:white;
+        border:none;
+        border : solid 1px black;
+        &:hover{
+            background-color:black;
+        }
+    }
+    .submitBtn{
+        margin:10px auto;
+        color:black
+    }
+    .currentBus{
+        width:100%;
+        text-align:center;
+        justify-content:center;
+        margin:10px 0;
+    }
+    ul{
+        position:relative;
+        background-color:rgba(229,248,229,0.3);
+        border-radius:30px;
+        margin:10px 0px;
+        width:100%;
+        height:300px;
+        .busName{
+            position: relative;
+            top:10px;
+            left:10px;
+            font-size:28px;
+            font-weight:bold;
+        }
+        li{
+            position:relative;
+            top:60%;
+        }
+    }
 `
 
+const MainText = styled.div`
+    width:100%;
+    color: black;
+    font-size:28px;
+    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:10px 0;
+    span{
+        margin-left:5px;
+    }
+`
+const BusInputForm=styled.div`
+    align-items:center;
+    text-align:center;
+    margin: 0px 5px;
+    gap:5px;
+    p{
+        margin-bottom:5px;
+    }
+    .busMenu{
+        margin-right:3px;
+    }
+    .stationMenu{
+        margin-right:3px;
+        margin-left:3px;
+    }
+    input{
+        width : 120px;
+        height: 24px;
+        
+    }
+`
 const CurrentBus = styled.div`
-    
+    margin-top:10px;
+    text-align:center;
+    span{
+        display:flex;
+        margin-bottom:5px;
+        text-align:center;
+        align-items:center;
+        justify-content:center;
+        &:last-of-type{
+            margin-bottom:0px;
+        }
+    }
 `
