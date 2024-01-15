@@ -4,6 +4,11 @@ import styled from 'styled-components';
 import stationInfo from '../stationInfo.json'
 import { parseString, xml2js } from 'react-native-xml2js'
 import { TbBusStop } from "react-icons/tb";
+import redBus from '../imgs/red.jpg';
+import blueBus from '../imgs/blue.jpg';
+import greenBus from '../imgs/green.jpg';
+import yellowBus from '../imgs/yellow.jpg';
+import lowBus from '../imgs/lowbus.jpg';
 
 //https://www.datoybi.com/http-proxy-middleware/
 
@@ -116,6 +121,25 @@ function BusDisplay() {
 
     }
 
+    const busPic=(typeNum)=>{
+        console.log(typeNum[0])
+        switch(typeNum[0]){
+            case "2": //마을버스 (초록)
+                return <img src={greenBus}/>
+            case "3": //간선버스 (파랑)
+                return <img src={blueBus}/>
+            case "4": //지선버스 (초록)
+                return <img src={greenBus}/>
+            case "5": //순환버스 (노랑)
+                return <img src={yellowBus}/>
+            case "6": //광역버스 (빨강)
+                return <img src={redBus}/>
+            default:
+                return <img src={blueBus}/>
+        }
+        //<img src={busStation}/>
+    }
+
     return (
         <>
         <BusWrapper>
@@ -143,9 +167,10 @@ function BusDisplay() {
         {busData && <>
         <ul>
             <li className='busName'>{busData.ServiceResult.msgBody[0].itemList[0].busRouteAbrv}</li>
+            <li>{busPic(busData.ServiceResult.msgBody[0].itemList[0].routeType)}</li>
             <li>현재 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg1}</li>
             <li>다음 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg2}</li>
-            <li>막차시간 : {lastBusCal(busData.ServiceResult.msgBody[0].itemList[0].lastTm[0])}</li>
+            <li>막차시간 : {busData.ServiceResult.msgBody[0].itemList[0].busType1=="1"? <img src={lowBus}/> : lastBusCal(busData.ServiceResult.msgBody[0].itemList[0].lastTm[0])}</li>
         </ul>
         </>
         }
@@ -171,7 +196,10 @@ const BusWrapper=styled.div`
     }
     .submitBtn{
         margin:10px auto;
-        color:black
+        color:black;
+        &:hover{
+            color:white;
+        }
     }
     .currentBus{
         width:100%;
@@ -185,19 +213,29 @@ const BusWrapper=styled.div`
         border-radius:30px;
         margin:10px 0px;
         width:100%;
-        height:300px;
-        .busName{
+        height:400px;
+        li{
             position: relative;
             top:10px;
             left:10px;
-            font-size:28px;
-            font-weight:bold;
+            margin-bottom:10px;
+            &.busName{
+                position: relative;
+                right:10px;
+                font-size:28px;
+                font-weight:bold;
+            }
+            
+            img{
+                position:relative;
+                left:200px;
+                width:200px;
+                height:200px;
+            }
         }
-        li{
-            position:relative;
-            top:60%;
-        }
+        
     }
+    
 `
 
 const MainText = styled.div`
