@@ -40,8 +40,7 @@ function MainPage() {
     
     return (
         <MainWrapper className='inner'>
-            <ClothWidget id='1' className={clothRollup ? "opened" : null}>
-                <button className="rollupBtn" onClick={cRollup}><span>Cloth Recommend</span></button>
+            <ClothWidget id='1' className="opened">
                 {clothRollup&&<ClothSlider/>}
             </ClothWidget>  
             <WeatherWidget id='2' className={weatherRollup ? "opened" : null}>
@@ -91,16 +90,7 @@ background-color: lightblue;
 height:40px;
 display:block;
 transition:500ms;
-    button{
-        span{
-            margin-left:5px;
-        }
-        text-align:center;
-        justify-content:center;
-        display:flex;
-        align-items:center;
-    }
-
+margin:0;
 &.opened{
     height:660px;
 }

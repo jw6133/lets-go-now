@@ -85,6 +85,7 @@ const ClothSlider = () => {
             <WeatherBlock>
                 <OpenWeatherDisplay propFunction={setTemperature} />
             </WeatherBlock>
+            <p>Today Recommend</p>
             <Linky>
                 <span><Link to ='/weatherHour'><FaCloudSunRain/></Link></span>
                 <span><Link to ='/bus'><TbBusStop/></Link></span>
@@ -145,7 +146,8 @@ const Linky=styled.div`
     font-size:50px;
     display:flex;
     justify-content:space-between;
-    margin:10px 15px 10px 15px ;
+    padding-top:10px;
+    margin:0px 15px 10px 15px ;
     span{
         width:55px;
         height: 55px;
