@@ -86,9 +86,9 @@ const ClothSlider = () => {
                 <OpenWeatherDisplay propFunction={setTemperature} />
             </WeatherBlock>
             <Linky>
-                <Link to ='/weatherHour'><FaCloudSunRain/></Link>
-                <Link to ='/bus'><TbBusStop/></Link>
-                <Link to ='/subway'><IoSubway/></Link>
+                <span><Link to ='/weatherHour'><FaCloudSunRain/></Link></span>
+                <span><Link to ='/bus'><TbBusStop/></Link></span>
+                <span><Link to ='/subway'><IoSubway/></Link></span>
             </Linky>
             <WeatherRecommend>{clothingData.message}</WeatherRecommend>
             <br />
@@ -143,4 +143,16 @@ const WeatherRecommend = styled.span`
 
 const Linky=styled.div`
     font-size:50px;
+    display:flex;
+    justify-content:space-between;
+    margin:10px 15px 10px 15px ;
+    span{
+        width:55px;
+        height: 55px;
+        display:flex;
+        text-align:center;
+        align-items:center;
+        justify-content:center;
+        border:solid 1px black;
+    }
 `
