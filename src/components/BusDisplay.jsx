@@ -142,7 +142,6 @@ function BusDisplay() {
 
     return (
         <>
-        <p>aa</p>
         <BusWrapper>
             <MainText><TbBusStop/> <span>Bus</span></MainText>
             <BusInputForm>
@@ -262,7 +261,8 @@ const MainText = styled.div`
     display:flex;
     align-items:center;
     justify-content:center;
-    margin:10px 0;
+    padding-top:10px;
+    margin-bottom:10px;
     span{
         margin-left:5px;
     }

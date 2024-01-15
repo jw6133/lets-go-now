@@ -5,6 +5,7 @@ import OpenWeatherDisplay from './OpenWeatherDisplay'
 import UserData from './UserData';
 import { FaPowerOff } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 function Head() {
 
@@ -46,8 +47,8 @@ function Head() {
     return (
         <HeadContainer>
             <LogoWrapper>
-                <span>Lets go</span>
-                <span className='main'>NOW</span>
+                <Link to='/'><span>Lets go</span>
+                <span className='main'>NOW</span></Link>
             </LogoWrapper>
             {user ? (
                 <>

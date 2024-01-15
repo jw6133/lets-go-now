@@ -5,10 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import NotFound from './pages/NotFound';
-import Subway from './components/Subway';
-import BusDisplay from './components/BusDisplay';
 import WeatherPage from './pages/WeatherPage';
-import OpenWeatherHour from './components/OpenWeatherHour';
+import BusPage from './pages/BusPage';
+import SubwayPage from './pages/SubwayPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,8 +19,8 @@ const routes = createBrowserRouter([
 
     children:[
       {path:'/weatherHour',element:<WeatherPage/>},
-      {path:'/subway',element:<Subway/>},
-      {path:'/bus',element:<BusDisplay/>},
+      {path:'/subway',element:<SubwayPage/>},
+      {path:'/bus',element:<BusPage/>},
     ]
   }
 ])

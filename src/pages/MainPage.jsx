@@ -40,11 +40,11 @@ function MainPage() {
     
     return (
         <MainWrapper className='inner'>
-            <ClothWidget id='2' className={clothRollup ? "opened" : null}>
+            <ClothWidget id='1' className={clothRollup ? "opened" : null}>
                 <button className="rollupBtn" onClick={cRollup}><span>Cloth Recommend</span></button>
                 {clothRollup&&<ClothSlider/>}
             </ClothWidget>  
-            <WeatherWidget id='1' className={weatherRollup ? "opened" : null}>
+            <WeatherWidget id='2' className={weatherRollup ? "opened" : null}>
                 <button className="rollupBtn" onClick={wRollup}><FaCloudSunRain/><span>Weather Info</span></button>
                 {weatherRollup&&<OpenWeatherHour/>}
             </WeatherWidget>

@@ -50,6 +50,19 @@ table {
 }
 a{
 	text-decoration: none;
+	color:black;
+	&:visited{
+		text-decoration:none;
+	}
+	&:hover{
+		text-decoration:none;
+	}
+	&:focus{
+		text-decoration:none;
+	}
+	&:active{
+		text-decoration:none;
+	}
 }
 img{
 	display: block;

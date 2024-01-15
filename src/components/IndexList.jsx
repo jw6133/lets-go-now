@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-scroll';
-import { IoIosPartlySunny } from "react-icons/io";
 import { GiClothes } from "react-icons/gi";
-import { FaTrainSubway } from "react-icons/fa6";
+import { FaCloudSunRain } from "react-icons/fa";
+import { IoSubway } from "react-icons/io5";
 import { TbBusStop } from "react-icons/tb";
 
 function IndexList() {
     const links = [
-        { to: '1', icon: <IoIosPartlySunny />, label: 'Weather' },
-        { to: '2', icon: <GiClothes />, label: 'Clothing' },
-        { to: '3', icon: <FaTrainSubway />, label: 'Subway' },
+        { to: '1', icon: <GiClothes />, label: 'Clothing' },
+        { to: '2', icon: <FaCloudSunRain />, label: 'Weather' },
+        { to: '3', icon: <IoSubway />, label: 'Subway' },
         { to: '4', icon: <TbBusStop />, label: 'Bus Stop' },
     ];
 
+    const [scroll, setScroll] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+        window.removeEventListener('scroll', handleScroll); //clean up
+        };
+    }, [scroll]);
+
+    const handleScroll = () => {
+        setScroll(true);
+        setTimeout(()=>{setScroll(false)},700)
+  };
+
     return (
-        <IndexClicker>
+        <IndexClicker style={{opacity: scroll? 1:0.1}}>
             <div>
                 {links.map((link, index) => (
                     <div key={index}>
@@ -35,22 +49,28 @@ const IndexClicker = styled.div`
     text-align: center;
     align-items:center;
     justify-content: center;
-    background-color: lightgreen;
+    background-color:lemonchiffon;
     font-size: 20px;
     border: solid 1px black;
     position: fixed;
     bottom: 50px;
-    left: 320px;
+    left: 380px;
     width: 50px;
     height: 150px;
+    transition:100ms;
     div{
         justify-content:center;
         align-items:center;
         text-align:center;
         width:30px;
         height: 30px;
-        margin-bottom:10px;
+        margin-bottom:5px;
+        &:first-of-type{
+            margin-top:10px;    
+        }
         span{
+            font-size:25px;
+            height: 30px;
             margin-left:13px;
         }
     }

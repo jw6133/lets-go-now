@@ -14,4 +14,5 @@ export default WeatherPage
 
 const BackGroundC = styled.div`
     background-color:#235191;
+    height:660px;
 `

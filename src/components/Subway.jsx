@@ -192,7 +192,8 @@ const MainText = styled.div`
     font-size:28px;
     color:yellow;
     text-align:center;
-    margin:10px 0;
+    padding-top:10px;
+    margin-bottom:10px;
     display:flex;
     align-items:center;
     justify-content:center;

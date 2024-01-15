@@ -8,7 +8,9 @@ import 'swiper/css/pagination';
 import OpenWeatherDisplay from './OpenWeatherDisplay';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
+import { FaCloudSunRain } from "react-icons/fa";
+import { IoSubway } from "react-icons/io5";
+import { TbBusStop } from "react-icons/tb";
 
 const slider = {
     width: "100px",
@@ -83,7 +85,11 @@ const ClothSlider = () => {
             <WeatherBlock>
                 <OpenWeatherDisplay propFunction={setTemperature} />
             </WeatherBlock>
-            <Link to ='/weatherHour'>Weather Link</Link>
+            <Linky>
+                <Link to ='/weatherHour'><FaCloudSunRain/></Link>
+                <Link to ='/bus'><TbBusStop/></Link>
+                <Link to ='/subway'><IoSubway/></Link>
+            </Linky>
             <WeatherRecommend>{clothingData.message}</WeatherRecommend>
             <br />
             <Swiper style={slider} slidesPerView={2}
@@ -133,4 +139,8 @@ const WeatherRecommend = styled.span`
     text-align:center;
     display:flex;
     align-items:center;
+`
+
+const Linky=styled.div`
+    font-size:50px;
 `
