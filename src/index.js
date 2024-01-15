@@ -5,6 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import NotFound from './pages/NotFound';
+import Subway from './components/Subway';
+import BusDisplay from './components/BusDisplay';
+import WeatherPage from './pages/WeatherPage';
+import OpenWeatherHour from './components/OpenWeatherHour';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -12,7 +16,13 @@ const routes = createBrowserRouter([
   {
     path:'/',
     element:<App/>,
-    errorElement:<NotFound/>
+    errorElement:<NotFound/>,
+
+    children:[
+      {path:'/weatherHour',element:<WeatherPage/>},
+      {path:'/subway',element:<Subway/>},
+      {path:'/bus',element:<BusDisplay/>},
+    ]
   }
 ])
 root.render(

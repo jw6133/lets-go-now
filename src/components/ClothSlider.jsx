@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import OpenWeatherDisplay from './OpenWeatherDisplay';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 
 const slider = {
@@ -82,6 +83,7 @@ const ClothSlider = () => {
             <WeatherBlock>
                 <OpenWeatherDisplay propFunction={setTemperature} />
             </WeatherBlock>
+            <Link to ='/weatherHour'>Weather Link</Link>
             <WeatherRecommend>{clothingData.message}</WeatherRecommend>
             <br />
             <Swiper style={slider} slidesPerView={2}

@@ -172,11 +172,13 @@ const MainText = styled.div`
     color: white;
     font-size:28px;
     text-align:center;
-    margin:10px 0;
+    padding-top:10px;
+    margin-bottom:10px;
     display:flex;
     align-items:center;
     justify-content:center;
     span{
+        background-color:#235191;
         margin-left:5px;
     }
 `
@@ -211,7 +213,7 @@ const WeatherTemp=styled.div`
 const Weather=styled.div`
     width:50px;
     height:70px;
-    font-size:18px;
+    font-size:16px;
     word-break:keep-all;
     display:flex;
     align-items:center;

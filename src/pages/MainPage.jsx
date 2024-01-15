@@ -6,7 +6,7 @@ import ClothSlider from '../components/ClothSlider';
 import BusDisplay from '../components/BusDisplay';
 import { IoSubway } from "react-icons/io5";
 import { FaCloudSunRain } from "react-icons/fa";
-    import { TbBusStop } from "react-icons/tb";
+import { TbBusStop } from "react-icons/tb";
 
 
 function MainPage() {
