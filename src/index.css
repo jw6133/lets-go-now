@@ -40,6 +40,11 @@ code {
   font-weight: normal;
   src: url(../src/fonts/RobotoCondensed-VariableFont_wght.ttf);
 }
+@font-face {
+  font-family: "SCoreDream";
+  font-weight: normal;
+  src: url(../src/fonts/SCDream4_regular.otf);
+}
 body{
-  font-family: "Roboto Condensed";  
+  font-family: "SCoreDream";  
 }

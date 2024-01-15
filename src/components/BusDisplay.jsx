@@ -166,11 +166,12 @@ function BusDisplay() {
         {error && <span>오류: {error}</span>}
         {busData && <>
         <ul>
-            <li className='busName'>{busData.ServiceResult.msgBody[0].itemList[0].busRouteAbrv}</li>
-            <li>{busPic(busData.ServiceResult.msgBody[0].itemList[0].routeType)}</li>
+            <div className='busName'>{busData.ServiceResult.msgBody[0].itemList[0].busRouteAbrv}<br/>
+            <span className='subBusName'>{busData.ServiceResult.msgBody[0].itemList[0].arsId}</span></div>
+            {busPic(busData.ServiceResult.msgBody[0].itemList[0].routeType)}
             <li>현재 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg1}</li>
             <li>다음 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg2}</li>
-            <li>막차시간 : {busData.ServiceResult.msgBody[0].itemList[0].busType1=="1"? <img src={lowBus}/> : lastBusCal(busData.ServiceResult.msgBody[0].itemList[0].lastTm[0])}</li>
+            <li>막차시간 : {busData.ServiceResult.msgBody[0].itemList[0].busType1[0]=="1"? <img src={lowBus}/> : lastBusCal(busData.ServiceResult.msgBody[0].itemList[0].lastTm[0])}</li>
         </ul>
         </>
         }
@@ -214,24 +215,38 @@ const BusWrapper=styled.div`
         margin:10px 0px;
         width:100%;
         height:400px;
-        li{
+        .busName{
+                position: relative;
+                height:250px;
+                left:10px;
+                top:10px;
+                font-size:48px;
+                font-weight:bold;
+                .subBusName{
+                    position:relative;
+                    top: 0;
+                    left:5px;
+                    font-size:16px;
+                    font-weight:normal;
+        }
+        }
+
+        img{
+            position:absolute;
+            right:10px;
+            top:10px;
+            width:200px;
+            height:200px;
+            margin-bottom:10px;
+            }
+        li{ 
+            display:flex;
             position: relative;
             top:10px;
             left:10px;
+            width:400px;
             margin-bottom:10px;
-            &.busName{
-                position: relative;
-                right:10px;
-                font-size:28px;
-                font-weight:bold;
-            }
             
-            img{
-                position:relative;
-                left:200px;
-                width:200px;
-                height:200px;
-            }
         }
         
     }
