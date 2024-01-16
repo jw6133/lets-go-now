@@ -5,13 +5,17 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import OpenWeatherDisplay from './OpenWeatherDisplay';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+//components
+import OpenWeatherHour from './OpenWeatherHour';
+import OpenWeatherDisplay from './OpenWeatherDisplay';
+//icon
 import { FaCloudSunRain } from "react-icons/fa";
 import { IoSubway } from "react-icons/io5";
 import { TbBusStop } from "react-icons/tb";
 import { TbShirt } from "react-icons/tb";
+import { IoUmbrellaOutline } from "react-icons/io5";
 
 const slider = {
     width: "100px",
@@ -19,9 +23,16 @@ const slider = {
 }
 
 const ClothSlider = () => {
-    const [weather,setWeather]=useState(null);
+    const [filteredList,setfilteredList]=useState([]);
     const [temperature, setTemperature] = useState(null);   
     const [clothingData, setClothingData] = useState({ items: [], itemsTwo: [], message: '' });
+    const [rainy,setRainy] = useState(false);
+    const [rainyTime,setRainyTime] = useState(null);
+    const [rainyIcon,setRainyIcon] = useState('01d');
+    const [rainyTemp,setRainyTemp] = useState(null);
+
+    const rainyWeather = [201, 200, 202, 210, 211, 212, 221, 230, 231, 232, 300, 301, 302, 310, 311, 312, 313, 314, 321,
+        500, 501, 502, 503, 504, 511, 520, 521, 522, 531, 600, 601, 602, 611, 612, 615, 616, 620, 621, 622, 901, 906]
 
     const imageCounts = {
         '4': 5,
@@ -80,11 +91,44 @@ const ClothSlider = () => {
         }
     }, [temperature]);
 
+    useEffect(()=>{
+        isRain(filteredList);
+    },[filteredList])
+
+    const isRain=(list)=>{
+        list.map((el,index)=>{
+            console.log(el);
+            if(index=0){
+                const rainyHour = new Date(el.dt_txt);
+                setRainyTime(rainyHour);
+                setRainyIcon(el.weather[0].icon);
+                setRainyTemp(el.main.temp);
+            }
+            if(index<=2 && rainyWeather.includes(el.weather[0].id)){
+                const rainyHour = new Date(el.dt_txt);
+                setRainy(true);
+                setRainyTime(rainyHour);
+                setRainyIcon(el.weather[0].icon);
+                setRainyTemp(el.main.temp);
+            }
+        })
+    }
+
+    const rainText = () =>{
+        if(rainy){
+            return `${(rainyTime.getHours()).toString().padStart(2,"0")}시에 비나 눈이 올 예정입니다. 우산을 챙겨주세요.`
+        }
+        else{
+            return '오늘은 비가 안오는듯 해요. 우산은 필요없어요 :)'
+        }
+    }
+
 
     return (
         <>
             <WeatherBlock>
                 <OpenWeatherDisplay propFunction={setTemperature} />
+                <OpenWeatherHour pFunction={setfilteredList}/>
             </WeatherBlock>
             <LinkMenu>Quick Menu</LinkMenu>
             <Linky>
@@ -123,6 +167,18 @@ const ClothSlider = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
+
+            <MainBody>
+            <span className='umbrellaText'><IoUmbrellaOutline/> 우산</span>
+                <WeatherRecommend>{rainText()}</WeatherRecommend>
+                <WeatherWrapper>
+                    <span className='isrs'>눈/비 여부 :</span>
+                    <span className='rainYesNo'>{rainy? 'yes':'no'}</span>
+                    <span>{rainyTime&&(rainyTime.getHours()).toString().padStart(2,"0")}시</span>
+                    <span>{rainyTemp}°C</span>
+                    <img src={`http://openweathermap.org/img/w/${rainyIcon}.png`}></img>
+                </WeatherWrapper>
+            </MainBody>
         </>
     );
 };
@@ -162,8 +218,9 @@ const Linky=styled.div`
     font-size:50px;
     display:flex;
     justify-content:space-between;
-    padding-top:20px;
-    margin:0px 15px 20px 15px;
+    padding:20px 20px 0px 20px;
+    margin-bottom:20px;
+    border-bottom:solid 1px black;
     span{
         width:55px;
         height: 55px;
@@ -171,9 +228,51 @@ const Linky=styled.div`
         text-align:center;
         justify-content:center;
         margin:0 auto;
+        margin-bottom:10px;
         &:hover{
             box-shadow: 0 0 0 1px black;
-
+            background-color:#79b6c9;
         }
+    }
+`
+const MainBody=styled.div`
+    margin-top: 20px;   
+    width: 100%;
+    span{
+        width:100%;
+        text-align:center;
+    }
+    img{
+        width: 50px;
+        height:50px;
+    }
+    .umbrellaText{
+        font-size:24px;
+    }
+`
+const WeatherWrapper = styled.div`
+    font-size:20px;
+    border-radius:30px;
+    display:flex;
+    background-color:#79b6c9;
+    color:white;
+    padding: 5px 20px;
+    margin:10px 0;
+    line-height:1.2;
+    .isrs{
+        font-size:16px;
+    }
+    .rainYesNo{
+        font-size:16px;
+        width:40px;
+    }
+    span{
+        width:100px;
+        height:60px;
+        display:flex;
+        align-items:center;
+        text-align:center;
+        justify-content:center;
+        vertical-align:middle;
     }
 `

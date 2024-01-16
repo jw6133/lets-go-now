@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { FaCloudSunRain } from "react-icons/fa";
 
-function OpenWeatherHour() {
+function OpenWeatherHour(props) {
     const [weatherHour,setWeatherHour]=useState(null);
     const [weatherHArray,setWeatherHArray]=useState([]);
     const [filteredList,setFilteredList]=useState([]);
@@ -52,8 +52,8 @@ function OpenWeatherHour() {
         { 620: '약한 소나기 눈' },
         { 621: '소나기 눈' },
         { 622: '강한 소나기 눈' },
-        { 701: '박무' },
-        { 711: '연기' },
+        { 701: '아주 옅은 안개' },
+        { 711: '옅은 안개' },
         { 721: '연무' },
         { 731: '모래 먼지' },
         { 741: '안개' },
@@ -136,6 +136,8 @@ function OpenWeatherHour() {
     useEffect(()=>{
         getTime();
     },[weatherHArray])
+
+    props.pFunction(filteredList)
     
     return (
         <>

@@ -88,7 +88,7 @@ display:block;
 transition:500ms;
 margin:0;
 &.opened{
-    height:660px;
+    height:500px;
 }
 
 `

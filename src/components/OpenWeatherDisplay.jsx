@@ -37,7 +37,7 @@ function OpenWeatherDisplay(props) {
             }
     }
 
-    props.propFunction(weatherMain.temp);
+    props.propFunction(weatherMain);
 
     return (
         <>
