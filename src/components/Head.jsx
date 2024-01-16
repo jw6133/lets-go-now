@@ -88,6 +88,11 @@ const LogoWrapper=styled.div`
     .main{
         font-size:24px;
     }
+    span{
+        &:hover{
+            color:purple;
+        }
+    }
 `
 const HeadWeather = styled.div`
     display:flex;

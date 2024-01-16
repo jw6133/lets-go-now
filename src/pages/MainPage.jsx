@@ -14,7 +14,6 @@ function MainPage() {
     const [mainHeight,setMainHeight]=useState("20px");
     const [user,setUser]=useState();
     const [weatherRollup,setWeatherRollup]=useState(false);
-    const [clothRollup,setClothRollup]=useState(false);
     const [subRollup,setSubRollup]=useState(false);
     const [busRollup,setBusRollup]=useState(false);
 
@@ -24,9 +23,6 @@ function MainPage() {
 
     const wRollup=()=>{
         setWeatherRollup(!weatherRollup);
-    }
-    const cRollup=()=>{
-        setClothRollup(!clothRollup);
     }
     const sRollup=()=>{
         setSubRollup(!subRollup);
@@ -41,18 +37,18 @@ function MainPage() {
     return (
         <MainWrapper className='inner'>
             <ClothWidget id='1' className="opened">
-                {clothRollup&&<ClothSlider/>}
+                <ClothSlider/>
             </ClothWidget>  
             <WeatherWidget id='2' className={weatherRollup ? "opened" : null}>
-                <button className="rollupBtn" onClick={wRollup}><FaCloudSunRain/><span>Weather Info</span></button>
+                <button className="rollupBtn weatherRoll" onClick={wRollup}><FaCloudSunRain/><span>Weather Info</span></button>
                 {weatherRollup&&<OpenWeatherHour/>}
             </WeatherWidget>
             <SubwayWidget id='3' className={subRollup ? "opened" : null}>
-                <button className='rollupBtn' onClick={sRollup}><IoSubway /><span>Find Subway</span></button>
+                <button className='rollupBtn subwayRoll' onClick={sRollup}><IoSubway /><span>Find Subway</span></button>
                 {subRollup&&<Subway/>}
             </SubwayWidget> 
             <BusWidget id='4' className={busRollup ? "opened" : null}>
-                <button className='rollupBtn' onClick={bRollup}><TbBusStop/><span>Find Bus</span></button>
+                <button className='rollupBtn busRoll' onClick={bRollup}><TbBusStop/><span>Find Bus</span></button>
                 {busRollup&&<BusDisplay/>}
             </BusWidget>
         </MainWrapper>

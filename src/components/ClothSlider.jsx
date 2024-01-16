@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { FaCloudSunRain } from "react-icons/fa";
 import { IoSubway } from "react-icons/io5";
 import { TbBusStop } from "react-icons/tb";
+import { TbShirt } from "react-icons/tb";
 
 const slider = {
     width: "100px",
@@ -85,12 +86,13 @@ const ClothSlider = () => {
             <WeatherBlock>
                 <OpenWeatherDisplay propFunction={setTemperature} />
             </WeatherBlock>
-            <p>Today Recommend</p>
+            <LinkMenu>Quick Menu</LinkMenu>
             <Linky>
                 <span><Link to ='/weatherHour'><FaCloudSunRain/></Link></span>
-                <span><Link to ='/bus'><TbBusStop/></Link></span>
                 <span><Link to ='/subway'><IoSubway/></Link></span>
+                <span><Link to ='/bus'><TbBusStop/></Link></span>
             </Linky>
+            <MainText><TbShirt/> 복장 추천</MainText>
             <WeatherRecommend>{clothingData.message}</WeatherRecommend>
             <br />
             <Swiper style={slider} slidesPerView={2}
@@ -133,28 +135,45 @@ const WeatherBlock = styled.div`
     align-items:center;
     margin-bottom:10px;
 `
-
+const LinkMenu=styled.div`
+    padding-top:5px;
+    width:100%;
+    text-align:center;
+    font-size:24px;
+`
+const MainText=styled.div`
+    width:100%;
+    padding-left:10px;
+    font-size:24px;
+    vertical-align:middle;
+`
 const WeatherRecommend = styled.span`
-    margin: 5px 0 ;
+    width:100%;
+    height:40px;
+    margin: 0 auto ;
     word-break:keep-all;
     text-align:center;
     display:flex;
     align-items:center;
+    justify-content:center;
 `
 
 const Linky=styled.div`
     font-size:50px;
     display:flex;
     justify-content:space-between;
-    padding-top:10px;
-    margin:0px 15px 10px 15px ;
+    padding-top:20px;
+    margin:0px 15px 20px 15px;
     span{
         width:55px;
         height: 55px;
         display:flex;
         text-align:center;
-        align-items:center;
         justify-content:center;
-        border:solid 1px black;
+        margin:0 auto;
+        &:hover{
+            box-shadow: 0 0 0 1px black;
+
+        }
     }
 `

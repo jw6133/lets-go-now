@@ -159,7 +159,9 @@ function BusDisplay() {
                 <span>버스명 : {busName}</span>
                 <span>정류장명 : {station}</span>
             </CurrentBus>
-            <button type='button' className='submitBtn' onClick={submitStation}>도착정보 조회</button>
+            <ButtonWrapper>
+                <button type='button' className='submitBtn' onClick={submitStation}>도착정보 조회</button>
+            </ButtonWrapper>
             
 
             {isLoading && <p>로딩 중...</p>}
@@ -185,22 +187,6 @@ const BusWrapper=styled.div`
     input{
         background:white;
         border:solid 1px black;
-    }
-    button{
-        background:transparent;
-        color:white;
-        border:none;
-        border : solid 1px black;
-        &:hover{
-            background-color:black;
-        }
-    }
-    .submitBtn{
-        margin:10px auto;
-        color:black;
-        &:hover{
-            color:white;
-        }
     }
     .currentBus{
         width:100%;
@@ -250,7 +236,21 @@ const BusWrapper=styled.div`
         }
         
     }
-    
+`
+const ButtonWrapper=styled.div`
+        width:100%;
+        height:50px;
+    button{
+        background:transparent;
+        color:black;
+        border:none;
+        border : solid 1px black;
+        margin:10px auto;
+        &:hover{
+            background-color:#0a3711;
+            color:white;
+        }
+    }
 `
 
 const MainText = styled.div`

@@ -109,7 +109,7 @@ function Subway() {
         <SubwayWrapper>
             <MainText><IoSubway /> <span>Subway</span></MainText>
             <InfoInput>
-                <input type='text' placeholder="역 명 입력.." value={station} onChange={shootStation}/>
+                <input type='text' placeholder='"역"을 제외하고 입력...' value={station} onChange={shootStation}/>
                 <button type='button' onClick={submitStation}>역 제출</button>
             </InfoInput>
                 {typing&&<div className='selectedStation'>- 선택된 역 : {station}역 -</div>}
@@ -135,8 +135,10 @@ const SubwayWrapper = styled.div`
         border:solid 1px black;
     }
     button{
+        height:35px;
+        width:60px;
         background:transparent;
-        color:white;
+        color:yellow;
         border:none;
         border : solid 1px black;
         &:hover{
