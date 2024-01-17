@@ -102,7 +102,6 @@ function Subway() {
 
     }
 
-    console.log(subwayData);
 
     return (
         <>

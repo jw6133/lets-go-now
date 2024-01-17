@@ -128,8 +128,6 @@ const ClothSlider = () => {
             return '오늘은 비가 안오는듯 해요. 우산은 필요없어요 :)'
         }
     }
-
-    console.log(clothingData);
     return (
         <>
             <AllWrapper>

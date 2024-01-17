@@ -18,7 +18,6 @@ function BusDisplay() {
 
     const [station, setStation] = useState('');
     const [busName, setBusName] = useState('');
-
     const [selectstId, setSelectstId] = useState(null);
     const [selectRoute, setSelectRoute] = useState(null);
     const [selectOrd, setSelectOrd] = useState(null);
@@ -87,6 +86,7 @@ function BusDisplay() {
                 });
             });
             if (busJsonData && busJsonData.ServiceResult && busJsonData.ServiceResult.msgBody) {
+                setBusData(null);
                 setBusData(busJsonData);
             } else {
                 throw new Error('유효하지 않은 데이터');
@@ -99,12 +99,11 @@ function BusDisplay() {
             setIsLoading(false);
         }
     };
-    useEffect(()=>{
-        {busData&&console.log(busData.ServiceResult.msgBody[0].itemList[0])};
-    },[busData])
+    // useEffect(()=>{
+    //     {busData&&console.log(busData.ServiceResult.msgBody[0].itemList[0])};
+    // },[busData])
 
     const lastBusCal=(time)=>{
-        console.log(time);
         const cut=time.slice(0,-2);
         // const year= cut.substr(0,4);
         // const month= cut.substr(4,2);
@@ -122,7 +121,6 @@ function BusDisplay() {
     }
 
     const busPic=(typeNum)=>{
-        console.log(typeNum[0])
         switch(typeNum[0]){
             case "2": //마을버스 (초록)
                 return <img src={greenBus}/>
