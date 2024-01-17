@@ -25,7 +25,7 @@ const slider = {
 const ClothSlider = () => {
     const [filteredList,setfilteredList]=useState([]);
     const [temperature, setTemperature] = useState(null);   
-    const [clothingData, setClothingData] = useState({ items: [], itemsTwo: [], message: '' });
+    const [clothingData, setClothingData] = useState({ items: [], itemsTwo: [], message: '',clothName : '' });
     const [rainy,setRainy] = useState(false);
     const [rainyTime,setRainyTime] = useState(null);
     const [rainyIcon,setRainyIcon] = useState('01d');
@@ -45,35 +45,42 @@ const ClothSlider = () => {
     }
 
     const updateClothingData = (temp) => {
-        let folderName, message;
+        let folderName, message,clothName;
         if (temp < 5) {
             message = '날씨가 많이 추워요.. 옷을 두껍게 입는걸 추천드릴게요.';
             folderName = '4';
+            clothName = '패딩, 두꺼운 코트, 기모, 방한용품';
         }
         // ... other conditions ...
         else if(temperature >=5 && temperature <9){
             message='슬슬 보온장비를 챙겨야 할 것 같아요.';
-            folderName='8_5'
+            folderName='8_5';
+            clothName = '울 코트, 히트텍, 기모';
         }
         else if(temperature >= 9 && temperature < 17){
             message='사람에 따라 쌀쌀하다고도 느낄 수 있어요.';
-            folderName='16_9'
+            folderName='16_9';
+            clothName = '코트, 자켓, 청바지, 기모바지';
         }
         else if(temperature >= 17 && temperature < 20){
             message='가벼운 긴팔 입기 좋은 날씨에요.';
-            folderName='19_17'
+            folderName='19_17';
+            clothName = '얇은 가디건&니트, 맨투맨, 긴 바지';
         }
         else if(temperature >= 20 && temperature < 23){
             message='아주 온난한 날씨에요.';
-            folderName='20_22'
+            folderName='20_22';
+            clothName = '블라우스, 긴팔, 면바지, 슬랙스';
         }
         else if(temperature >= 23 && temperature < 28){
             message='꽤 더우니 시원하게 입고 나가시는게 좋을 것 같아요.';
-            folderName='27_23'
+            folderName='27_23';
+            clothName = '반팔, 얇은 셔츠, 반바지, 면바지';
         }
         else if (temp >= 28) {
             message = '불볕더위에요.. 얇은 옷차림을 추천드려요.';
             folderName = '28';
+            clothName = '민소매, 반팔, 반바지, 짧은 치마';
         }
 
         if (folderName) {
@@ -81,7 +88,7 @@ const ClothSlider = () => {
             const items = Array.from({ length: count + 1 }, (_, i) => ({ src: `/clothicon/${folderName}/1/${i}.png` }));
             const itemsTwo = Array.from({ length: count + 1 }, (_, i) => ({ src: `/clothicon/${folderName}/2/${i}.png` }));
 
-            setClothingData({ items, itemsTwo, message });
+            setClothingData({ items, itemsTwo, message, clothName });
         }
     };
 
@@ -97,7 +104,6 @@ const ClothSlider = () => {
 
     const isRain=(list)=>{
         list.map((el,index)=>{
-            console.log(el);
             if(index=0){
                 const rainyHour = new Date(el.dt_txt);
                 setRainyTime(rainyHour);
@@ -123,9 +129,10 @@ const ClothSlider = () => {
         }
     }
 
-
+    console.log(clothingData);
     return (
         <>
+            <AllWrapper>
             <WeatherBlock>
                 <OpenWeatherHour pFunction={setfilteredList}/>
                 <OpenWeatherDisplay propFunction={setTemperature} />
@@ -139,6 +146,7 @@ const ClothSlider = () => {
             <MainText><TbShirt/> 복장 추천</MainText>
             <WeatherRecommend>{clothingData.message}</WeatherRecommend>
             <br />
+            <SwiperWrapper>
             <Swiper style={slider} slidesPerView={2}
                 slidesPerGroup={2}
                 loop={true}
@@ -167,7 +175,8 @@ const ClothSlider = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-
+            </SwiperWrapper>
+            <ClothNameWrapper>{clothingData&&clothingData.clothName}</ClothNameWrapper>
             <MainBody>
             <span className='umbrellaText'><IoUmbrellaOutline/> 우산</span>
                 <WeatherRecommend>{rainText()}</WeatherRecommend>
@@ -179,11 +188,15 @@ const ClothSlider = () => {
                     <img src={`http://openweathermap.org/img/w/${rainyIcon}.png`}></img>
                 </WeatherWrapper>
             </MainBody>
+            </AllWrapper>
         </>
     );
 };
 
 export default ClothSlider
+const AllWrapper = styled.div`
+    position:relative;
+`
 
 const WeatherBlock = styled.div`
     color:white;
@@ -213,7 +226,19 @@ const WeatherRecommend = styled.span`
     align-items:center;
     justify-content:center;
 `
-
+const ClothNameWrapper = styled.span`
+    position:absolute;
+    right:40px;
+    top: 50%;
+    color:black;
+    width: 200px;
+    height : 60px;
+    word-break:keep-all;
+    text-align:center;
+`
+const SwiperWrapper=styled.div`
+    width:250px;
+`
 const Linky=styled.div`
     font-size:50px;
     display:flex;

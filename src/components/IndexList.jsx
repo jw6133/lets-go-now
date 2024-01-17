@@ -49,7 +49,7 @@ const IndexClicker = styled.div`
     text-align: center;
     align-items:center;
     justify-content: center;
-    background-color:lemonchiffon;
+    background-color:lightblue;
     font-size: 20px;
     border: solid 1px black;
     position: fixed;
@@ -57,7 +57,7 @@ const IndexClicker = styled.div`
     left: 380px;
     width: 50px;
     height: 150px;
-    transition:100ms;
+    transition:1000ms;
     div{
         justify-content:center;
         align-items:center;
