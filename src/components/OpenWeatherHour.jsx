@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, PropTypes } from 'react'
 import styled from 'styled-components';
 import { WiDayCloudy } from "react-icons/wi";
 
@@ -137,11 +137,12 @@ function OpenWeatherHour(props) {
         getTime();
     },[weatherHArray])
 
+    // function sendList(list){
+    //     props.pFunction(list);
+    // }
     useEffect(()=>{
-        if(filteredList.length>0){
-            props.pFunction(filteredList);
-        }
-    },[filteredList],props.pFunction);
+       props.pFunction(filteredList)
+    },[filteredList]);
     
     
     return (

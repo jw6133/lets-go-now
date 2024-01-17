@@ -42,7 +42,7 @@ function OpenWeatherDisplay(props) {
         if (weatherMain) {
             props.propFunction(weatherMain);
         }
-    }, [weatherMain, props]);
+    }, [weatherMain]);
 
     return (
         <>

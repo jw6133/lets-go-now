@@ -82,7 +82,7 @@ const WeatherWidget = styled.div`
     }
     `
 const ClothWidget = styled.div`
-background-color: lightblue;
+background-color: white;
 height:40px;
 display:block;
 transition:500ms;
@@ -116,7 +116,7 @@ button{
 `
 
 const BusWidget = styled.div`
-background-color: lightgreen;
+background-color: #D7F0A4;
 height:40px;
 display:block;
 transition:500ms;

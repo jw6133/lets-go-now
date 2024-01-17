@@ -127,8 +127,8 @@ const ClothSlider = () => {
     return (
         <>
             <WeatherBlock>
-                <OpenWeatherDisplay propFunction={setTemperature} />
                 <OpenWeatherHour pFunction={setfilteredList}/>
+                <OpenWeatherDisplay propFunction={setTemperature} />
             </WeatherBlock>
             <LinkMenu>Quick Menu</LinkMenu>
             <Linky>
@@ -254,7 +254,8 @@ const WeatherWrapper = styled.div`
     font-size:20px;
     border-radius:30px;
     display:flex;
-    background-color:#79b6c9;
+    /* background-color:#79b6c9; */
+    background-color:#c9e1e9;
     color:white;
     padding: 5px 20px;
     margin:10px 0;
