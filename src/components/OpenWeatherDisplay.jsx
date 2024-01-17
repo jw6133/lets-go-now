@@ -37,7 +37,12 @@ function OpenWeatherDisplay(props) {
             }
     }
 
-    props.propFunction(weatherMain);
+    // props.propFunction(weatherMain);
+    useEffect(() => {
+        if (weatherMain) {
+            props.propFunction(weatherMain);
+        }
+    }, [weatherMain, props]);
 
     return (
         <>

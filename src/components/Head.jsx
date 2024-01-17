@@ -68,7 +68,8 @@ export default Head
 
 
 const HeadContainer = styled.div`
-    background-color:lemonchiffon;
+    background-color:#0E0c32;
+    color:white;
     width:100%;
     height:50px;
     border-bottom:solid 1px rgba(0,0,0,0.7);
@@ -84,11 +85,13 @@ const HeadContainer = styled.div`
     }
 `
 const LogoWrapper=styled.div`
+    
     padding: 5px 5px;
     .main{
         font-size:24px;
     }
     span{
+        color:white;
         &:hover{
             color:purple;
         }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import { FaCloudSunRain } from "react-icons/fa";
+import { WiDayCloudy } from "react-icons/wi";
 
 function OpenWeatherHour(props) {
     const [weatherHour,setWeatherHour]=useState(null);
@@ -137,11 +137,16 @@ function OpenWeatherHour(props) {
         getTime();
     },[weatherHArray])
 
-    props.pFunction(filteredList)
+    useEffect(()=>{
+        if(filteredList.length>0){
+            props.pFunction(filteredList);
+        }
+    },[filteredList],props.pFunction);
+    
     
     return (
         <>
-        <MainText><FaCloudSunRain /> <span>Weather</span></MainText>
+        <MainText><WiDayCloudy/> <span>Weather</span></MainText>
             <ul>
                 {filteredList&&filteredList.map((el)=>{
                     return(

@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 import OpenWeatherHour from './OpenWeatherHour';
 import OpenWeatherDisplay from './OpenWeatherDisplay';
 //icon
-import { FaCloudSunRain } from "react-icons/fa";
-import { IoSubway } from "react-icons/io5";
+import { WiDayCloudy } from "react-icons/wi";
+import { IoSubwayOutline } from "react-icons/io5";
 import { TbBusStop } from "react-icons/tb";
 import { TbShirt } from "react-icons/tb";
 import { IoUmbrellaOutline } from "react-icons/io5";
@@ -132,8 +132,8 @@ const ClothSlider = () => {
             </WeatherBlock>
             <LinkMenu>Quick Menu</LinkMenu>
             <Linky>
-                <span><Link to ='/weatherHour'><FaCloudSunRain/></Link></span>
-                <span><Link to ='/subway'><IoSubway/></Link></span>
+                <span><Link to ='/weatherHour'><WiDayCloudy/></Link></span>
+                <span><Link to ='/subway'><IoSubwayOutline/></Link></span>
                 <span><Link to ='/bus'><TbBusStop/></Link></span>
             </Linky>
             <MainText><TbShirt/> 복장 추천</MainText>

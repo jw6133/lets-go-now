@@ -3,7 +3,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import { IoSubway } from "react-icons/io5";
+import { IoSubwayOutline } from "react-icons/io5";
 
 function Subway() {
     const [subwayData,setSubwayData]=useState(null);
@@ -107,7 +107,7 @@ function Subway() {
     return (
         <>
         <SubwayWrapper>
-            <MainText><IoSubway /> <span>Subway</span></MainText>
+            <MainText><IoSubwayOutline /> <span>Subway</span></MainText>
             <InfoInput>
                 <input type='text' placeholder='"역"을 제외하고 입력...' value={station} onChange={shootStation}/>
                 <button type='button' onClick={submitStation}>역 제출</button>

@@ -4,8 +4,8 @@ import Subway from '../components/Subway';
 import OpenWeatherHour from '../components/OpenWeatherHour';
 import ClothSlider from '../components/ClothSlider';
 import BusDisplay from '../components/BusDisplay';
-import { IoSubway } from "react-icons/io5";
-import { FaCloudSunRain } from "react-icons/fa";
+import { IoSubwayOutline } from "react-icons/io5";
+import { WiDayCloudy } from "react-icons/wi";
 import { TbBusStop } from "react-icons/tb";
 
 
@@ -40,11 +40,11 @@ function MainPage() {
                 <ClothSlider/>
             </ClothWidget>  
             <WeatherWidget id='2' className={weatherRollup ? "opened" : null}>
-                <button className="rollupBtn weatherRoll" onClick={wRollup}><FaCloudSunRain/><span>Weather Info</span></button>
+                <button className="rollupBtn weatherRoll" onClick={wRollup}><WiDayCloudy/><span>Weather Info</span></button>
                 {weatherRollup&&<OpenWeatherHour/>}
             </WeatherWidget>
             <SubwayWidget id='3' className={subRollup ? "opened" : null}>
-                <button className='rollupBtn subwayRoll' onClick={sRollup}><IoSubway /><span>Find Subway</span></button>
+                <button className='rollupBtn subwayRoll' onClick={sRollup}><IoSubwayOutline /><span>Find Subway</span></button>
                 {subRollup&&<Subway/>}
             </SubwayWidget> 
             <BusWidget id='4' className={busRollup ? "opened" : null}>
