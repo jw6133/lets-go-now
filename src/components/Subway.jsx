@@ -4,6 +4,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { IoSubwayOutline } from "react-icons/io5";
+import { getDBSubway, saveSubway } from '../api/firebase';
+import { set } from 'firebase/database';
 
 function Subway() {
     const [subwayData,setSubwayData]=useState(null);
@@ -11,7 +13,27 @@ function Subway() {
     const [isLoad,setIsLoad]=useState(false);
     const [realtime,setRealtime]= useState([]);
     const [station,setStation]=useState('');
+    const [success,setSuccess] = useState(null);
+    const [error,setError]= useState(null);
+    const [DBStation,setDBStation]=useState(null);
     const subwayApi=process.env.REACT_APP_SUBWAY_API_KEY;
+
+    async function initSubway(){
+        console.log(11);
+        try{
+            const DBSubway=await getDBSubway();
+            setDBStation(DBStation);
+        }catch(error){
+            console.error(error);
+        }
+    }
+    useEffect(()=>{
+        initSubway();
+        if(DBStation !=null){
+            setStation(DBStation);
+            getSubway();
+        }
+    },[])
 
     const getSubway =async()=>{
         try{
@@ -102,6 +124,25 @@ function Subway() {
 
     }
 
+    const uploadStation = async(e)=>{
+        e.preventDefault();
+        try{
+            await saveSubway(station);
+            setSuccess('업로드 완료!');
+            setTimeout(()=>{
+                setSuccess(null)
+            },2000);
+            setStation('');
+        }
+        catch(error){
+            console.error(error);
+            setError('업로드 실패..')
+            setTimeout(()=>{
+                setError(null)
+            },2000);
+        }
+    }
+
 
     return (
         <>
@@ -110,6 +151,7 @@ function Subway() {
             <InfoInput>
                 <input type='text' placeholder='"역"을 제외하고 입력...' value={station} onChange={shootStation}/>
                 <button type='button' onClick={submitStation}>역 제출</button>
+                <button type='button' onClick={uploadStation}>역 저장</button>
             </InfoInput>
                 {typing&&<div className='selectedStation'>- 선택된 역 : {station}역 -</div>}
                 {subwayData && subwayData.realtimeArrivalList && subwayData.realtimeArrivalList.map((el) => (
@@ -120,6 +162,12 @@ function Subway() {
                         <li key={el.btrainNo}>{el.arvlMsg2}</li>
                     </ul>
                 ))}
+            {success && (
+                    <p>{success}</p>
+                )}
+            {error && (
+                    <p>{error}</p>
+                )}
         </SubwayWrapper>
         </>
     )

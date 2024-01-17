@@ -137,12 +137,12 @@ function OpenWeatherHour(props) {
         getTime();
     },[weatherHArray])
 
-    // function sendList(list){
-    //     props.pFunction(list);
-    // }
-    useEffect(()=>{
-       props.pFunction(filteredList)
-    },[filteredList]);
+    useEffect(() => {
+        
+        if (filteredList.length > 0) {
+            props.pFunction(filteredList);
+        }
+    }, [filteredList, props.pFunction]);
     
     
     return (
