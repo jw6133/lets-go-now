@@ -254,8 +254,7 @@ const WeatherWrapper = styled.div`
     font-size:20px;
     border-radius:30px;
     display:flex;
-    /* background-color:#79b6c9; */
-    background-color:#c9e1e9;
+    background-color:#79b6c9;
     color:white;
     padding: 5px 20px;
     margin:10px 0;

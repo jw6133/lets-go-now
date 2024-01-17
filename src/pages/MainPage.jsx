@@ -82,7 +82,7 @@ const WeatherWidget = styled.div`
     }
     `
 const ClothWidget = styled.div`
-background-color: white;
+background-color: lightblue;
 height:40px;
 display:block;
 transition:500ms;
