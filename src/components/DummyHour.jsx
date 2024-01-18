@@ -3,7 +3,7 @@ import React, { useEffect, useState, PropTypes } from 'react'
 import styled from 'styled-components';
 import { WiDayCloudy } from "react-icons/wi";
 
-function OpenWeatherHour() {
+function OpenWeatherHour(props) {
     const [weatherHour,setWeatherHour]=useState(null);
     const [weatherHArray,setWeatherHArray]=useState([]);
     const [filteredList,setFilteredList]=useState([]);
@@ -137,97 +137,20 @@ function OpenWeatherHour() {
         getTime();
     },[weatherHArray])
 
-    // useEffect(() => {
+    useEffect(() => {
         
-    //     if (filteredList.length > 0) {
-    //         props.pFunction(filteredList);
-    //     }
-    // }, [filteredList, props.pFunction]);
+        if (filteredList.length > 0) {
+            props.pFunction(filteredList);
+        }
+    }, [filteredList, props.pFunction]);
     
     
     return (
         <>
-        <MainText><WiDayCloudy/> <span>Weather</span></MainText>
-            <ul>
-                {filteredList&&filteredList.map((el)=>{
-                    return(
-                        <>
-                        <WeatherWrapper>
-                            <WeatherDate>
-                                <span>{divideDate(el.dt_txt)}</span><br/>
-                                <span className='hour'>{divideTime(el.dt_txt)}</span>
-                            </WeatherDate>
-                            <WeatherTemp>{el.main.temp}°C</WeatherTemp>
-                            <Weather>{korean(el.weather[0].id)}</Weather>
-                            <WeatherIcon>
-                            <img src={`http://openweathermap.org/img/w/${el.weather[0].icon}.png`}></img>
-                            </WeatherIcon>
-                            <br/>
-                        </WeatherWrapper>
-                        </>
-                    )
-                })}
-            
-        </ul>
+        <p>이 컴포넌트는 clothslider에 우산 여부를 서포트해주는 깡통 컴포넌트입니다.</p>
         </>
     )
 }
 
 export default OpenWeatherHour
-
-const MainText = styled.div`
-    width:100%;
-    color: white;
-    font-size:28px;
-    text-align:center;
-    padding-top:10px;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    span{
-        background-color:#235191;
-        margin-left:5px;
-    }
-`
-const WeatherWrapper = styled.li`
-    border-radius:30px;
-    justify-content:center;
-    display:flex;
-    background-color:#305893;
-    color:white;
-    padding: 5px 0;
-    margin-bottom:10px;
-    gap:15px;
-    line-height:1.2;
-`
-const WeatherDate=styled.div`
-    padding-top:10px;
-    width:90px;
-    height:60px;
-    .hour{
-        width:90px;
-        font-size:24px;
-    }
-`
-const WeatherTemp=styled.div`
-    width:90px;
-    height:70px;
-    text-align:right;
-    font-size:24px;
-    display:flex;
-    align-items:center;
-`
-const Weather=styled.div`
-    width:50px;
-    height:70px;
-    font-size:16px;
-    word-break:keep-all;
-    display:flex;
-    align-items:center;
-`
-const WeatherIcon = styled.div`
-    width:70px;
-    height:70px;
-`
 

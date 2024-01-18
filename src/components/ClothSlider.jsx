@@ -16,6 +16,7 @@ import { IoSubwayOutline } from "react-icons/io5";
 import { TbBusStop } from "react-icons/tb";
 import { TbShirt } from "react-icons/tb";
 import { IoUmbrellaOutline } from "react-icons/io5";
+import DummyHour from './DummyHour';
 
 const slider = {
     width: "100px",
@@ -99,18 +100,20 @@ const ClothSlider = () => {
     }, [temperature]);
 
     useEffect(()=>{
+        console.log(filteredList);
         isRain(filteredList);
     },[filteredList])
 
     const isRain=(list)=>{
         list.map((el,index)=>{
-            if(index=0){
+            if(index==0){
                 const rainyHour = new Date(el.dt_txt);
+                console.log(rainyHour)
                 setRainyTime(rainyHour);
                 setRainyIcon(el.weather[0].icon);
                 setRainyTemp(el.main.temp);
             }
-            if(index<=2 && rainyWeather.includes(el.weather[0].id)){
+            else if(index<=2 && rainyWeather.includes(el.weather[0].id)){
                 const rainyHour = new Date(el.dt_txt);
                 setRainy(true);
                 setRainyTime(rainyHour);
@@ -132,7 +135,7 @@ const ClothSlider = () => {
         <>
             <AllWrapper>
             <WeatherBlock>
-                <OpenWeatherHour pFunction={setfilteredList}/>
+                <DummyHour pFunction={setfilteredList}/>
                 <OpenWeatherDisplay propFunction={setTemperature} />
             </WeatherBlock>
             <LinkMenu>Quick Menu</LinkMenu>
