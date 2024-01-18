@@ -45,7 +45,6 @@ function Subway() {
 
     const DBActivateSubway=()=>{
         if(DBStation !=null){
-            console.log(DBStation);
             if(station != null){
                 getSubway(DBStation)
             }
@@ -54,7 +53,6 @@ function Subway() {
 
     const getSubway =async(data)=>{
         try{
-            console.log(station);
             const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/7/${data}`);
             setSubwayData(result.data);
             setIsLoad(true);

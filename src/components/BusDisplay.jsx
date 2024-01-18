@@ -9,6 +9,7 @@ import blueBus from '../imgs/blue.jpg';
 import greenBus from '../imgs/green.jpg';
 import yellowBus from '../imgs/yellow.jpg';
 import lowBus from '../imgs/lowbus.jpg';
+import { getDBBus, saveBus } from '../api/firebase';
 
 //https://www.datoybi.com/http-proxy-middleware/
 
@@ -23,9 +24,34 @@ function BusDisplay() {
     const [selectOrd, setSelectOrd] = useState(null);
 
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [success,setSuccess] = useState(null);
+    const [error,setError]= useState(null);
 
+    const [DBBusName,setDBBusName]=useState(null);
+    const [DBStation,setDBStation]=useState(null);
     const dServiceKey=process.env.REACT_APP_DATAGOKR_BUS_API_KEY;
+
+    useEffect(()=>{
+        initBus();
+    },[])
+
+    async function initBus(){
+        try{
+            let DBDataList= await getDBBus();
+            findStation(DBDataList[0],DBDataList[1]);
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    // const DBActivateBus=()=>{
+    //     if(DBBusName !=null && DBStation !=null){
+    //         console.log('DBActivateBus activated.')
+    //         findStation(DBBusName,DBStation);
+    //     }
+    // }
+
 
     const shootStation = (e) => {
         setStation(e.target.value);
@@ -62,11 +88,11 @@ function BusDisplay() {
     const getBus = async () => {
         setIsLoading(true);
         setError(null);
-        if (!station.trim()) {
-            console.log('역 정보 없음');
-            setIsLoading(false);
-            return;
-        }
+        // if (!station.trim()) {
+        //     console.log('역 정보 없음');
+        //     setIsLoading(false);
+        //     return;
+        // }
         try {
             const res = await fetch(`/api/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`)
 
@@ -120,12 +146,25 @@ function BusDisplay() {
 
     }
 
-    // const uploadBus = async(e)=>{
-    //     e.preventDefault();
-    //     try{
-    //         await save
-    //     }
-    // }
+    const uploadBus = async(e)=>{
+        e.preventDefault();
+        try{
+            await saveBus(busName,station);
+            setSuccess('업로드 완료!');
+            setTimeout(()=>{
+                setSuccess(null)
+            },2000);
+            setBusName('');
+            setStation('');
+        }
+        catch(error){
+            console.error(error);
+            setError('업로드 실패..');
+            setTimeout(()=>{
+                setError(null)
+            },2000);
+        }
+    }
 
     const busPic=(typeNum)=>{
         switch(typeNum[0]){
@@ -166,11 +205,12 @@ function BusDisplay() {
             </CurrentBus>
             <ButtonWrapper>
                 <button type='button' className='submitBtn' onClick={submitStation}>도착정보 조회</button>
-                <button type='button' className='submitBtn' onClick={submitStation}>도착정보 조회</button>
+                <button type='button' className='submitBtn' onClick={uploadBus}>버스정보 저장</button>
             </ButtonWrapper>
             
 
-            {isLoading && <p>로딩 중...</p>}
+        {isLoading && <p>로딩 중...</p>}
+        {success && (<p>{success}</p>)}
         {error && <span>오류: {error}</span>}
         {busData && <>
         <ul>

@@ -86,10 +86,21 @@ export async function getDBSubway(){
     }
 }
 
-// export async function saveBus(busName,station){
-//     return set(ref(database,`bus/${uid}`),{
-//         busName,
-//         station,
-//         uid,
-//     })
-// }
+export async function saveBus(busName,station){
+    return set(ref(database,`bus/${uid}`),{
+        busName,
+        station,
+        uid,
+    })
+}
+
+export async function getDBBus(){
+    try{
+        const snapshot = await get(ref(database,`bus/${uid}`));
+        if(snapshot.exists()){
+            return [snapshot.val().busName,snapshot.val().station];
+        }
+    }catch(error){
+        console.error(error);
+    }
+}
