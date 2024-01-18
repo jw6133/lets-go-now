@@ -120,6 +120,13 @@ function BusDisplay() {
 
     }
 
+    // const uploadBus = async(e)=>{
+    //     e.preventDefault();
+    //     try{
+    //         await save
+    //     }
+    // }
+
     const busPic=(typeNum)=>{
         switch(typeNum[0]){
             case "2": //마을버스 (초록)
@@ -158,6 +165,7 @@ function BusDisplay() {
                 <span>정류장명 : {station}</span>
             </CurrentBus>
             <ButtonWrapper>
+                <button type='button' className='submitBtn' onClick={submitStation}>도착정보 조회</button>
                 <button type='button' className='submitBtn' onClick={submitStation}>도착정보 조회</button>
             </ButtonWrapper>
             

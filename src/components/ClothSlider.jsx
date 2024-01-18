@@ -100,7 +100,6 @@ const ClothSlider = () => {
     }, [temperature]);
 
     useEffect(()=>{
-        console.log(filteredList);
         isRain(filteredList);
     },[filteredList])
 
@@ -108,7 +107,6 @@ const ClothSlider = () => {
         list.map((el,index)=>{
             if(index==0){
                 const rainyHour = new Date(el.dt_txt);
-                console.log(rainyHour)
                 setRainyTime(rainyHour);
                 setRainyIcon(el.weather[0].icon);
                 setRainyTemp(el.main.temp);

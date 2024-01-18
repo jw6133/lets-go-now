@@ -18,26 +18,44 @@ function Subway() {
     const [DBStation,setDBStation]=useState(null);
     const subwayApi=process.env.REACT_APP_SUBWAY_API_KEY;
 
-    async function initSubway(){
-        console.log(11);
-        try{
-            const DBSubway=await getDBSubway();
-            setDBStation(DBStation);
-        }catch(error){
+    useEffect(()=>{
+        initSubway().then(()=>{
+            if(DBStation){
+                console.log(DBStation); 
+                setStation(DBStation);
+                getSubway();
+            }
+        })
+    },[])
+
+    useEffect(()=>{
+        if(DBStation){
+            DBActivateSubway()
+        }
+    },[DBStation])
+
+    async function initSubway() {
+        try {
+            const DBSave = await getDBSubway();
+            setDBStation(DBSave);
+        } catch (error) {
             console.error(error);
         }
     }
-    useEffect(()=>{
-        initSubway();
-        if(DBStation !=null){
-            setStation(DBStation);
-            getSubway();
-        }
-    },[])
 
-    const getSubway =async()=>{
+    const DBActivateSubway=()=>{
+        if(DBStation !=null){
+            console.log(DBStation);
+            if(station != null){
+                getSubway(DBStation)
+            }
+        }
+    }
+
+    const getSubway =async(data)=>{
         try{
-            const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/7/${station}`);
+            console.log(station);
+            const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/7/${data}`);
             setSubwayData(result.data);
             setIsLoad(true);
         }
@@ -58,7 +76,8 @@ function Subway() {
     }
     const submitStation=()=>{
         setSubwayData(null);
-        getSubway();
+        const data=station;
+        getSubway(data);
 
     }
     //(1001:1호선, 1002:2호선, 1003:3호선, 1004:4호선, 1005:5호선 1006:6호선, 1007:7호선, 1008:8호선, 

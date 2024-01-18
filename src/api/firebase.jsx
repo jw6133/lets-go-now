@@ -1,9 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from "firebase/auth";
 import {get,set,getDatabase,ref,remove} from 'firebase/database';
-import { func, object } from "prop-types";
-import { useState } from "react";
-import {v4 as uuid} from 'uuid';
 
 const firebaseConfig={
     apiKey : process.env.REACT_APP_FIREBASE_API_KEY,
@@ -15,7 +12,7 @@ const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 const database =getDatabase(app);
-var uid;
+var uid='';
 
 provider.setCustomParameters({
     prompt : 'select_account'
@@ -25,6 +22,7 @@ export async function googleLogin(){
         const result = await signInWithPopup(auth,provider);
         const user=result.user;
         uid=result.user.uid;
+        console.log(uid);
         return user;
     }catch(error){
         console.error(error);
@@ -70,19 +68,16 @@ async function adminUser(user){
 }
 
 export async function saveSubway(station){
-    return set(ref(database,`stations/${uid}`),{
+    return set(ref(database,`subways/${uid}`),{
         station,
         uid,
     })
 }
 
 export async function getDBSubway(){
-    console.log(uid);
-    const subwayRef = ref(database,`stations/${uid}`);
     try{
-        const snapshot = await get(subwayRef);
+        const snapshot = await get(ref(database,`subways/${uid}`));
         if(snapshot.exists()){
-            console.log(snapshot.val().station);
             return(snapshot.val().station);
         }
     }
@@ -90,3 +85,11 @@ export async function getDBSubway(){
         console.error(error);
     }
 }
+
+// export async function saveBus(busName,station){
+//     return set(ref(database,`bus/${uid}`),{
+//         busName,
+//         station,
+//         uid,
+//     })
+// }
