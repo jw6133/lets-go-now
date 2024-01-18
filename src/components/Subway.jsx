@@ -201,7 +201,8 @@ const SubwayWrapper = styled.div`
     button{
         height:35px;
         width:60px;
-        background:transparent;
+        background:black;
+        font-weight:bold;
         color:yellow;
         border:none;
         border : solid 1px black;

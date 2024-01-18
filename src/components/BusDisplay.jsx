@@ -75,7 +75,7 @@ function BusDisplay() {
             setSelectRoute(foundStation.ROUTE_ID);
             setSelectOrd(foundStation.순번);
         } else {
-            setError('버스명과 정류장명이 잘못 입력되었습니다');
+            setError('등록된 정보가 없습니다.');
         }
     };
 
@@ -286,12 +286,19 @@ const BusWrapper=styled.div`
 const ButtonWrapper=styled.div`
         width:100%;
         height:50px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
     button{
-        background:transparent;
-        color:black;
+        background:#396640;
+        color:white;
+        font-weight:bold;
         border:none;
         border : solid 1px black;
-        margin:10px auto;
+        margin:10px 30px;
+        width:150px;
+        height:36px;
+        display:inline;
         &:hover{
             background-color:#0a3711;
             color:white;
