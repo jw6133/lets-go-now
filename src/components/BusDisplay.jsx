@@ -211,7 +211,7 @@ function BusDisplay() {
 
         {isLoading && <p>로딩 중...</p>}
         {success && (<p>{success}</p>)}
-        {error && <span>오류: {error}</span>}
+        {error && <span>{error}</span>}
         {busData && <>
         <ul>
             <div className='busName'>{busData.ServiceResult.msgBody[0].itemList[0].busRouteAbrv}<br/>
