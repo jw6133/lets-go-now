@@ -340,9 +340,9 @@ const BusInputForm=styled.div`
         margin-left:3px;
     }
     input{
-        font-size:20px;
+        font-size:16px;
         width : 100px;
-        height: 35px;
+        height: 30px;
         &:first-of-type{
             margin-right:10px;
         }
