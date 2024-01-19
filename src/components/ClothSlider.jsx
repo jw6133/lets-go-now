@@ -47,7 +47,8 @@ const ClothSlider = () => {
 
     const updateClothingData = (temp) => {
         let folderName, message,clothName;
-        if (temp < 5) {
+        const temperature=temp.temp;
+        if (temperature < 5) {
             message = '날씨가 많이 추워요.. 옷을 두껍게 입는걸 추천드릴게요.';
             folderName = '4';
             clothName = '패딩, 두꺼운 코트, 기모, 방한용품';
