@@ -100,7 +100,7 @@ function BusDisplay() {
             }
             const data = await res.text();
             console.log(data);
-            const cleanedString = data.replace('\ufeff', '');
+            const cleanedString = data.replace(/[\u0000-\u001F\u007F-\u009F]/g, "");
             console.log(cleanedString)
 
             const busJsonData = await new Promise((resolve, reject) => {
@@ -108,7 +108,7 @@ function BusDisplay() {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(JSON.parse(JSON.stringify(result)));
+                        resolve(result);
                     }
                 });
             });

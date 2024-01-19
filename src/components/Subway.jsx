@@ -253,6 +253,9 @@ const InfoInput=styled.div`
         margin-left:10px;
         width:80px;
         font-weight:normal;
+        &:hover{
+            background:#666666;
+        }
     }
 `
 const MainText = styled.div`
