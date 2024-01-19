@@ -94,13 +94,13 @@ function BusDisplay() {
         //     return;
         // }
         try {
-            const res = await fetch(`/busapi/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`)
+            const res = await fetch(`/api/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`)
             if (!res.ok) {
                 throw new Error('정보를 받아오지 못했습니다.')
             }
             const data = await res.text();
             console.log(data);
-            const cleanedString = data.replace(/[\u0000-\u001F\u007F-\u009F]/g, "");
+            const cleanedString = data.replace('\ufeff', '');
             console.log(cleanedString)
 
             const busJsonData = await new Promise((resolve, reject) => {
@@ -108,7 +108,7 @@ function BusDisplay() {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(result);
+                        resolve(JSON.parse(JSON.stringify(result)));
                     }
                 });
             });

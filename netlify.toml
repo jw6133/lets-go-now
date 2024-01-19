@@ -6,6 +6,6 @@ force = true
 
 [[redirects]]
 from = "/busapi/*"
-to = "http://ws.bus.go.kr/rest/arrive/:splat"
+to = "http://ws.bus.go.kr/:splat"
 status = 200
 force = true
