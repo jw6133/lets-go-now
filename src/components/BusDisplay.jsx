@@ -95,12 +95,13 @@ function BusDisplay() {
         // }
         try {
             const res = await fetch(`/api/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`)
-            console.log(res);
             if (!res.ok) {
                 throw new Error('정보를 받아오지 못했습니다.')
             }
             const data = await res.text();
+            console.log(data);
             const cleanedString = data.replace('\ufeff', '');
+            console.log(cleanedString)
 
             const busJsonData = await new Promise((resolve, reject) => {
                 parseString(cleanedString, (err, result) => {
@@ -120,7 +121,7 @@ function BusDisplay() {
 
         } catch (error) {
             console.error(error);
-            setError("api 오류"+error.message);
+            setError("api 오류 :"+error.message);
         } finally {
             setIsLoading(false);
         }
