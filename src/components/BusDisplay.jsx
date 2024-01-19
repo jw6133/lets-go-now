@@ -247,6 +247,7 @@ const BusWrapper=styled.div`
         margin:10px 0px;
         width:100%;
         height:400px;
+        font-size:20px;
         .busName{
                 position: relative;
                 height:250px;

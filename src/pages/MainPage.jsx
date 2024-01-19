@@ -110,7 +110,7 @@ button{
 }
 
 &.opened{
-    height:700px;
+    height:850px;
 }
 
 `

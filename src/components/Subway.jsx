@@ -213,14 +213,14 @@ const SubwayWrapper = styled.div`
         margin:10px 0;
     }
     ul{
-        height:60px;
+        height:80px;
         margin-bottom:5px;
         padding-top:5px;
         position:relative;
         background-color:rgba(160,160,160,0.3);
         border-radius:30px;
         margin-bottom:10px;
-        font-size:14px;
+        font-size:20px;
         li{
             position:relative;
             left:60px;
@@ -231,7 +231,7 @@ const SubwayWrapper = styled.div`
             &.linePhoto{
                 position:absolute;
                 left:20px;
-                top:17px;
+                top:25px;
             }
         }
     }
@@ -243,7 +243,10 @@ const InfoInput=styled.div`
     padding-top:10px;
     margin-bottom:20px;
     input{
-        height:21px;
+        height:35px;
+        font-size:16px;
+        width:150px;
+        text-align:center;
     }
     button{
         margin-left:10px;

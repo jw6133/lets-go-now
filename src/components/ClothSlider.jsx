@@ -79,7 +79,7 @@ const ClothSlider = () => {
             folderName='27_23';
             clothName = '반팔, 얇은 셔츠, 반바지, 면바지';
         }
-        else if (temp >= 28) {
+        else if (temperature >= 28) {
             message = '불볕더위에요.. 얇은 옷차림을 추천드려요.';
             folderName = '28';
             clothName = '민소매, 반팔, 반바지, 짧은 치마';
@@ -273,6 +273,7 @@ const MainBody=styled.div`
     }
     .umbrellaText{
         font-size:24px;
+        padding-left:10px;
     }
 `
 const WeatherWrapper = styled.div`
@@ -281,7 +282,7 @@ const WeatherWrapper = styled.div`
     display:flex;
     background-color:#79b6c9;
     color:white;
-    padding: 5px 20px;
+    padding-left:50px;
     margin:10px 0;
     line-height:1.2;
     .isrs{
@@ -299,5 +300,9 @@ const WeatherWrapper = styled.div`
         text-align:center;
         justify-content:center;
         vertical-align:middle;
+    }
+    img{
+        width:60px;
+        height:60px;
     }
 `
