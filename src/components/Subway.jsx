@@ -11,6 +11,7 @@ function Subway() {
     const [subwayData,setSubwayData]=useState(null);
     const [typing,setTyping]=useState(false);
     const [isLoad,setIsLoad]=useState(false);
+    const [realtime,setRealtime]= useState([]);
     const [station,setStation]=useState('');
     const [success,setSuccess] = useState(null);
     const [error,setError]= useState(null);
@@ -18,40 +19,34 @@ function Subway() {
     const subwayApi=process.env.REACT_APP_SUBWAY_API_KEY;
 
     useEffect(()=>{
-        initSubway().then(()=>{
-            if(DBStation){
-                console.log(DBStation); 
-                setStation(DBStation);
-                getSubway();
-            }
-        })
+        initSubway();
     },[])
 
-    useEffect(()=>{
-        if(DBStation){
-            DBActivateSubway()
-        }
-    },[DBStation])
+    // useEffect(()=>{
+    //     if(DBStation){
+    //         DBActivateSubway()
+    //     }
+    // },[DBStation])
 
     async function initSubway() {
         try {
             const DBSave = await getDBSubway();
-            setDBStation(DBSave);
+            console.log(DBSave);
+            getSubway(DBSave);
         } catch (error) {
             console.error(error);
         }
     }
 
-    const DBActivateSubway=()=>{
-        if(DBStation !=null){
-            if(station != null){
-                getSubway(DBStation)
-            }
-        }
-    }
+    // const DBActivateSubway=()=>{
+    //     if(DBStation !=null){
+    //         if(station != null){
+    //             getSubway(DBStation)
+    //         }
+    //     }
+    // }
 
     const getSubway =async(data)=>{
-        console.log('getSubway active')
         try{
             const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/7/${data}`);
             setSubwayData(result.data);
@@ -171,7 +166,7 @@ function Subway() {
                 <button type='button' onClick={uploadStation}>역 저장</button>
             </InfoInput>
                 {typing&&<div className='selectedStation'>- 선택된 역 : {station}역 -</div>}
-                {subwayData && subwayData.realtimeArrivalList.map((el) => (
+                {subwayData && subwayData.realtimeArrivalList && subwayData.realtimeArrivalList.map((el) => (
                     <ul>
                         <li key={el.btrainNo} className='linePhoto'>{<img src={`subway_icon/${lineCalculator(el.subwayId)}.png`}/>}</li>
                         <li key={el.btrainNo}>지하철 노선명 : {el.trainLineNm}</li>
