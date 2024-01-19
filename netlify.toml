@@ -1,15 +1,3 @@
-[[redirects]]
-  from = "/proxy/*"
-  to = "https://apigw.tmoney.co.kr"
-  status = 200
-  force = true
-
-  [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-	force = false
-
   [[redirects]]
 from = "/subwayapi/*"
 to = "http://swopenAPI.seoul.go.kr/api/subway/:splat"
