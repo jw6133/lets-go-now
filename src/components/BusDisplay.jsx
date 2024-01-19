@@ -94,7 +94,7 @@ function BusDisplay() {
         //     return;
         // }
         try {
-            const res = await fetch(`/busapi/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`)
+            const res = await fetch(`/busapi/api/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`)
             if (!res.ok) {
                 console.log(res);
                 throw new Error('정보를 받아오지 못했습니다.')
