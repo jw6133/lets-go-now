@@ -324,7 +324,7 @@ const MainText = styled.div`
 const BusInputForm=styled.div`
     align-items:center;
     text-align:center;
-    font-size:20px;
+    font-size:18px;
     margin: 0px 5px;
     gap:5px;
     p{
@@ -340,7 +340,7 @@ const BusInputForm=styled.div`
     }
     input{
         font-size:20px;
-        width : 120px;
+        width : 100px;
         height: 35px;
         &:first-of-type{
             margin-right:10px;
