@@ -48,7 +48,7 @@ function Subway() {
 
     const getSubway =async(data)=>{
         try{
-            const result=await axios.get(`http://swopenAPI.seoul.go.kr/api/subway/${subwayApi}/json/realtimeStationArrival/0/7/${data}`);
+            const result=await axios.get(`/subwayapi/${subwayApi}/json/realtimeStationArrival/0/7/${data}`);
             setSubwayData(result.data);
             setIsLoad(true);
         }

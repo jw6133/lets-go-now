@@ -94,7 +94,7 @@ function BusDisplay() {
         //     return;
         // }
         try {
-            const res = await fetch(`/api/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`)
+            const res = await fetch(`/busapi/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`)
             if (!res.ok) {
                 throw new Error('정보를 받아오지 못했습니다.')
             }
@@ -291,11 +291,12 @@ const ButtonWrapper=styled.div`
         display:flex;
         align-items:center;
         justify-content:space-between;
+
     button{
         background:#396640;
         color:white;
-        font-weight:bold;
         border:none;
+        font-size:18px;
         border : solid 1px black;
         margin:10px 30px;
         width:150px;
