@@ -217,6 +217,7 @@ const MainText=styled.div`
     vertical-align:middle;
 `
 const WeatherRecommend = styled.span`
+    font-size:18px;
     width:100%;
     height:40px;
     margin: 0 auto ;
@@ -227,6 +228,7 @@ const WeatherRecommend = styled.span`
     justify-content:center;
 `
 const ClothNameWrapper = styled.span`
+    font-size:18px;
     position:absolute;
     right:40px;
     top: 50%;

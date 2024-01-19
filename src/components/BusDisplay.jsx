@@ -324,10 +324,12 @@ const MainText = styled.div`
 const BusInputForm=styled.div`
     align-items:center;
     text-align:center;
+    font-size:20px;
     margin: 0px 5px;
     gap:5px;
     p{
         margin-bottom:5px;
+        font-size:16px;
     }
     .busMenu{
         margin-right:3px;
@@ -337,9 +339,12 @@ const BusInputForm=styled.div`
         margin-left:3px;
     }
     input{
+        font-size:20px;
         width : 120px;
-        height: 24px;
-        
+        height: 35px;
+        &:first-of-type{
+            margin-right:10px;
+        }
     }
 `
 const CurrentBus = styled.div`

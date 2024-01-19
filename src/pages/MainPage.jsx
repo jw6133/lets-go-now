@@ -132,7 +132,7 @@ button{
     color:black;
 }
 &.opened{
-    height:660px;
+    height:700px;
 }
 
 `

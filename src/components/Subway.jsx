@@ -244,12 +244,15 @@ const InfoInput=styled.div`
     margin-bottom:20px;
     input{
         height:35px;
-        font-size:16px;
+        font-size:20px;
         width:150px;
         text-align:center;
     }
     button{
+        font-size:20px;
         margin-left:10px;
+        width:80px;
+        font-weight:normal;
     }
 `
 const MainText = styled.div`
