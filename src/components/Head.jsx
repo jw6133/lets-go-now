@@ -6,7 +6,7 @@ import UserData from './UserData';
 import { FaPowerOff } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
 import { Link } from 'react-router-dom';
-
+//netlify domain add
 function Head() {
 
     const [user, setUser] = useState(null);
