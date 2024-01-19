@@ -94,10 +94,7 @@ function BusDisplay() {
         //     return;
         // }
         try {
-            const res = await fetch(`/api/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`);
-            if (!res.ok) {
-                throw new Error('정보를 받아오지 못했습니다.')
-            }
+            const res = await fetch(`/busapi/rest/arrive/getArrInfoByRoute?serviceKey=${dServiceKey}&stId=${selectstId}&busRouteId=${selectRoute}&ord=${selectOrd}`)
             const data = await res.text();
             console.log(data);
             const cleanedString = data.replace('\ufeff', '');
