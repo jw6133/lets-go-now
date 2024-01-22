@@ -216,8 +216,10 @@ function BusDisplay() {
         {error && <span>{error}</span>}
         {busData && <>
         <ul>
+            <ApiResponseMain>
             <div className='busName'>{busData.ServiceResult.msgBody[0].itemList[0].busRouteAbrv}<br/>
             <span className='subBusName'>{busData.ServiceResult.msgBody[0].itemList[0].arsId}</span></div>
+            </ApiResponseMain>
             {busPic(busData.ServiceResult.msgBody[0].itemList[0].routeType)}
             <li>현재 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg1}</li>
             <li>다음 버스 : {busData.ServiceResult.msgBody[0].itemList[0].arrmsg2}</li>
@@ -253,10 +255,10 @@ const BusWrapper=styled.div`
         .busName{
                 position: relative;
                 height:250px;
-                left:10px;
                 top:10px;
                 font-size:48px;
                 font-weight:bold;
+                width:100%;
                 .subBusName{
                     position:relative;
                     top: 0;
@@ -363,4 +365,7 @@ const CurrentBus = styled.div`
             margin-bottom:0px;
         }
     }
+`
+const ApiResponseMain = styled.div`
+    padding-left:10px;
 `
