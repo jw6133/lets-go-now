@@ -192,11 +192,12 @@ const MainText = styled.div`
 `
 const WeatherWrapper = styled.li`
     border-radius:30px;
-    justify-content:center;
+    justify-content:space-between;
     display:flex;
     background-color:#305893;
     color:white;
     padding: 5px 0;
+    padding-left:30px;
     margin-bottom:10px;
     gap:15px;
     line-height:1.2;
